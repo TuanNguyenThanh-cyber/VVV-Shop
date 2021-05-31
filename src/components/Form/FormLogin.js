@@ -1,5 +1,5 @@
-import React from "react";
-import { InputGroup, InputGroupAddon, InputGroupText, Input } from "reactstrap";
+import React, { useEffect } from "react";
+import { InputGroup, InputGroupAddon, InputGroupText } from "reactstrap";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, Redirect } from "react-router-dom";
@@ -30,23 +30,21 @@ export default function FormLogin() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({ resolver: yupResolver(schema), mode: "onChange"});
+  } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
   const handleLogin = (value) => {
     console.log(value);
     dispatch(login(value));
   };
 
-  // if (isLoading) {
-  //   return <Loading></Loading>;
-  // }
-
-  if (userInfo) {
-    return <Redirect to="/home"></Redirect>;
+  if(localStorage.getItem("userInfo") !== null){
+    return (
+      <Redirect to="/home"></Redirect>
+    )
   }
 
-  if(isLoading) {
-    return(<Loading></Loading>);
+  if (isLoading) {
+    return <Loading></Loading>;
   }
 
   return (
@@ -61,7 +59,8 @@ export default function FormLogin() {
                 <MdEmail></MdEmail>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input"
+            <input
+              className="form-input"
               type="text"
               placeholder="Email or Phone"
               {...register("account")}
@@ -76,7 +75,8 @@ export default function FormLogin() {
                 <RiLockPasswordFill></RiLockPasswordFill>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input"
+            <input
+              className="form-input"
               type="password"
               placeholder="Password"
               {...register("password")}
@@ -85,7 +85,7 @@ export default function FormLogin() {
           {errors.password && (
             <div className="alert alert-danger">{errors.password.message}</div>
           )}
-          {error && (<div className="alert alert-danger">{error}</div>) }
+          {error && <div className="alert alert-danger">{error}</div>}
           <div className="center">
             <button type="submit" className="btn btn-form">
               Đăng nhập

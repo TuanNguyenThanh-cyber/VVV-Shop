@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { FaPhoneAlt, FaUser, FaAngleDown } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Collapse } from "reactstrap";
 import "./HeaderTop.scss";
 
 export default function HeaderTop() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+  };
 
   const toggle = () => setIsOpen(!isOpen);
   return (
@@ -25,14 +29,27 @@ export default function HeaderTop() {
                 <span>Tài khoản</span>
                 <FaAngleDown className="HeaderTop_Right-BtnIcon"></FaAngleDown>
                 <Collapse className="HeaderTop_Right-Collapse" isOpen={isOpen}>
-                  <ul>
-                    <li>
-                      <Link to="/login">Đăng nhập</Link>
-                    </li>
-                    <li>
-                      <Link to="/signup">Đăng ký</Link>
-                    </li>
-                  </ul>
+                  {localStorage.getItem("userInfo") === null ? (
+                    <ul>
+                      <li>
+                        <Link to="/login">Đăng nhập</Link>
+                      </li>
+                      <li>
+                        <Link to="/signup">Đăng ký</Link>
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul>
+                      <li>
+                        <Link to="/login">Thông tin tài khoản</Link>
+                      </li>
+                      <li>
+                        <Link to="/login" onClick={handleLogout}>
+                          Đăng xuất
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
                 </Collapse>
               </button>
             </div>

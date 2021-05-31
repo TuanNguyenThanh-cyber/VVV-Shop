@@ -9,7 +9,7 @@ const userInfo = localStorage.getItem("userInfo")
   : null;
 
 const initialState = {
-  userInfo,
+  userInfo: null,
   isLoading: false,
   error: null,
 };

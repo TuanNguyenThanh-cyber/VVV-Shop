@@ -6,7 +6,16 @@ const baseAPI = axios.create({
 
 baseAPI.interceptors.request.use(
   (config) => {
-    // Xử lý request trước khi gửi lên server
+    // Xử lý trước khi request được gửi lên server
+    // Thêm Authorization vào header
+    // const userInfo = localStorage.getItem("userInfo");
+
+    // if (userInfo) {
+    //   const { accessToken } = JSON.parse(userInfo);
+    //   config.headers.Authorization = `auth_token ${accessToken}`;
+    //   console.log(accessToken);
+    // }
+
     return config;
   },
   (error) => {
