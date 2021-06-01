@@ -37,7 +37,7 @@ export default function FormLogin() {
     dispatch(login(value));
   };
 
-  if(localStorage.getItem("userInfo") !== null){
+  if(localStorage.getItem("userLogin") !== null){
     return (
       <Redirect to="/home"></Redirect>
     )

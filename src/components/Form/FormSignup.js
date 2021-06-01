@@ -65,7 +65,9 @@ export default function FormSignup() {
     return <Loading></Loading>;
   }
 
-  if(userInfo){
+  if(localStorage.getItem("userSignUp") !== null){
+    alert("Chúc mừng bạn đã đăng ký thành công tài khoản ! Vui lòng đăng nhập lại");
+    localStorage.removeItem("userSignUp");
     return(
       <Redirect from="/signup" to="/login"></Redirect>
     )
