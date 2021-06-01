@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseAPI = axios.create({
-  baseURL: "https://vvvshop.herokuapp.com/api",
+  baseURL: "http://127.0.0.1:8080/api",
 });
 
 baseAPI.interceptors.request.use(

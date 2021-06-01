@@ -3,7 +3,7 @@ import { InputGroup, InputGroupAddon, InputGroupText, Input } from "reactstrap";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt, FaUserAlt, FaAddressCard } from "react-icons/fa";
 import { RiLockPasswordFill, RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./Form.scss";
@@ -18,16 +18,30 @@ const phoneRegVn = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
 // Tạo schema validation
 const schema = yup.object().shape({
   name: yup.string().required("Name can not empty"),
-  email: yup.string().required("Email can not empty").email("Email has wrong format"),
-  phone: yup.string().required("Phone can not empty").matches(phoneRegVn, "Email has wrong format"),
+  email: yup
+    .string()
+    .required("Email can not empty")
+    .email("Email has wrong format"),
+  phone: yup
+    .string()
+    .required("Phone can not empty")
+    .matches(phoneRegVn, "Email has wrong format"),
   address: yup.string().required("Address can not empty"),
-  password: yup.string().required("Password can not empty").min(8,"Password must be 8 characters or more"),
-  retypePassword: yup.string().required("Retype password can not empty").oneOf([yup.ref('password'), null], 'Password does not match'),
+  password: yup
+    .string()
+    .required("Password can not empty")
+    .min(8, "Password must be 8 characters or more"),
+  retypePassword: yup
+    .string()
+    .required("Retype password can not empty")
+    .oneOf([yup.ref("password"), null], "Password does not match"),
 });
 
 export default function FormSignup() {
   const dispatch = useDispatch();
-  const {userInfo, isLoading, error} = useSelector((state) => state.signupReducer);
+  const { userInfo, isLoading, error } = useSelector(
+    (state) => state.signupReducer
+  );
 
   const {
     register,
@@ -42,16 +56,23 @@ export default function FormSignup() {
       phone: value.phone,
       address: value.address,
       password: value.password,
-    }
+    };
     console.log(dataUser);
     dispatch(signup(dataUser));
+  };
+
+  if (isLoading) {
+    return <Loading></Loading>;
   }
 
-  if(isLoading) {
-    return(<Loading></Loading>);
+  if(userInfo){
+    return(
+      <Redirect from="/signup" to="/login"></Redirect>
+    )
   }
 
   console.log(error);
+  console.log(userInfo);
   return (
     <form onSubmit={handleSubmit(handleSignup)}>
       <div className="container">
@@ -64,7 +85,11 @@ export default function FormSignup() {
                 <FaUserAlt></FaUserAlt>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input" placeholder="Name" {...register("name")}/>
+            <input
+              className="form-input"
+              placeholder="Name"
+              {...register("name")}
+            />
           </InputGroup>
           {errors.name && (
             <div className="alert alert-danger">{errors.name.message}</div>
@@ -75,7 +100,11 @@ export default function FormSignup() {
                 <MdEmail></MdEmail>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input" placeholder="Email" {...register("email")}/>
+            <input
+              className="form-input"
+              placeholder="Email"
+              {...register("email")}
+            />
           </InputGroup>
           {errors.email && (
             <div className="alert alert-danger">{errors.email.message}</div>
@@ -86,7 +115,11 @@ export default function FormSignup() {
                 <FaPhoneAlt></FaPhoneAlt>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input" placeholder="Phone" {...register("phone")}/>
+            <input
+              className="form-input"
+              placeholder="Phone"
+              {...register("phone")}
+            />
           </InputGroup>
           {errors.phone && (
             <div className="alert alert-danger">{errors.phone.message}</div>
@@ -97,7 +130,11 @@ export default function FormSignup() {
                 <FaAddressCard></FaAddressCard>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input" placeholder="Address" {...register("address")}/>
+            <input
+              className="form-input"
+              placeholder="Address"
+              {...register("address")}
+            />
           </InputGroup>
           {errors.address && (
             <div className="alert alert-danger">{errors.address.message}</div>
@@ -108,7 +145,12 @@ export default function FormSignup() {
                 <RiLockPasswordFill></RiLockPasswordFill>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input" type="password" placeholder="Password" {...register("password")}/>
+            <input
+              className="form-input"
+              type="password"
+              placeholder="Password"
+              {...register("password")}
+            />
           </InputGroup>
           {errors.password && (
             <div className="alert alert-danger">{errors.password.message}</div>
@@ -119,11 +161,19 @@ export default function FormSignup() {
                 <RiLockPasswordLine></RiLockPasswordLine>
               </InputGroupText>
             </InputGroupAddon>
-            <input className="form-input" type="password" placeholder="Retype Password" {...register("retypePassword")}/>
+            <input
+              className="form-input"
+              type="password"
+              placeholder="Retype Password"
+              {...register("retypePassword")}
+            />
           </InputGroup>
           {errors.retypePassword && (
-            <div className="alert alert-danger">{errors.retypePassword.message}</div>
+            <div className="alert alert-danger">
+              {errors.retypePassword.message}
+            </div>
           )}
+          {error && <div className="alert alert-danger">{error.data.errors[0]} <br/> {error.data.errors[1]}</div>}
           <div className="center">
             <button type="submit" className="btn btn-form" disabled={!isValid}>
               Đăng ký
