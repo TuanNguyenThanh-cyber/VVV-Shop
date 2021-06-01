@@ -1,0 +1,49 @@
+footer{
+    background-color: #c4c4c4;
+    color: black;
+    .container{
+        .row{
+            .col-lg-4{
+                a{
+                     color: black;
+                }
+                a:hover{
+                    color: #0056b3;
+                }
+                p img{
+                    width: 1.5rem;
+                    margin-right: 0.5em;
+                }
+                .btn-img{
+                    height: 1.5rem;
+                    margin-right: 0.5em;
+                }
+                .logo{
+                    width: 10rem;
+                }
+                .title{
+                    font-weight: bold;
+                }
+                .section{
+                    font-weight: bold;
+                    text-align: left;
+                    font-size: 2rem;
+                    margin-top: 2em;
+                }
+                .footer_icon{
+                    margin-right: 10px;
+                    font-size: 25px;
+                }
+                .footer_icon-fb{
+                    color: #0061ff;
+                }
+                .footer_icon-youtube{
+                    color: #ff0000;
+                }
+                .footer_icon-tw{
+                    color: #000;
+                }
+            }
+        }
+    }
+}
