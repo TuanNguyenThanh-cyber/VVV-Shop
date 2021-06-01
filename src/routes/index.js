@@ -6,6 +6,7 @@ import News from '../pages/News'
 const Home = lazy(() => import('../pages/Home'))
 const Login = lazy(() => import('../pages/Login'))
 const Signup = lazy(() => import('../pages/Signup'))
+const About = lazy(() => import('../pages/About'))
 
 export default function Router() {
     return (
@@ -26,6 +27,9 @@ export default function Router() {
                     </Route>
                     <Route path="/signup" exact>
                         <Signup></Signup>
+                    </Route>
+                    <Route path="/about" exact>
+                        <About></About>
                     </Route>
                 </Switch>
             </BrowserRouter>
