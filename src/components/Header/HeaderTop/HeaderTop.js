@@ -8,7 +8,8 @@ export default function HeaderTop() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("userInfo");
+    localStorage.removeItem("userLogin");
+    localStorage.removeItem("userSignUp");
   };
 
   const toggle = () => setIsOpen(!isOpen);
@@ -29,7 +30,7 @@ export default function HeaderTop() {
                 <span>Tài khoản</span>
                 <FaAngleDown className="HeaderTop_Right-BtnIcon"></FaAngleDown>
                 <Collapse className="HeaderTop_Right-Collapse" isOpen={isOpen}>
-                  {localStorage.getItem("userInfo") === null ? (
+                  {localStorage.getItem("userLogin") === null ? (
                     <ul>
                       <li>
                         <Link to="/login">Đăng nhập</Link>

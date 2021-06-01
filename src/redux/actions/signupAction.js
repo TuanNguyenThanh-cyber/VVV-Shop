@@ -11,6 +11,8 @@ export function signup(value) {
 
     try {
       const { data } = await authAPI.register(value);
+      // Lưu thông tin xuống local storage
+      localStorage.setItem("userSignUp", JSON.stringify(data));
       dispacth({ type: SIGNUP_SUCCESS, payload: { data } });
     } catch (error) {
       dispacth({

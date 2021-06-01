@@ -13,7 +13,7 @@ export function login(value) {
     try {
       const { data } = await authAPI.login(value);
       // Lưu thông tin xuống localStorage để giữ trạng thái đăng nhập khi user tắt web
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userLogin", JSON.stringify(data));
       dispacth({ type: LOGIN_SUCCESS, payload: { data } });
     } catch (error) {
       console.log(error);
