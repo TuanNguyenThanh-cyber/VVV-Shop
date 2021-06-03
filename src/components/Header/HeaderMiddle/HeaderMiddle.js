@@ -17,16 +17,33 @@ export default function HeaderMiddle(props) {
 
   // const [isScroll, setIsScroll] = useState(false);
 
-  const handleScrollHeader = () => {
-    if (window.scrollY >= 50) {
-      setResult(result || isScroll);
-    } else {
-      setResult(false);
-    }
-  };
+  // const handleScrollHeader = () => {
+  //   if (window.scrollY >= 50) {
+  //     setResult(result || isScroll);
+  //   } else {
+  //     setResult(false);
+  //   }
+  // };
 
-  window.addEventListener("scroll", handleScrollHeader);
-  
+  // window.addEventListener("scroll", handleScrollHeader);
+
+  const abortController = new AbortController();
+  const signal = abortController.signal;
+
+  useEffect(() => {
+    const handleScrollHeader = () => {
+      if (window.scrollY >= 20) {
+        setResult(result || isScroll);
+      } else {
+        setResult(false);
+      }
+    };
+    window.addEventListener("scroll", handleScrollHeader);
+    return function cleanup(){
+      abortController.abort();
+    }
+  }, [result]);
+
   return (
     <div className={result ? "HeaderMiddle scroll" : "HeaderMiddle"}>
       <div className="container">

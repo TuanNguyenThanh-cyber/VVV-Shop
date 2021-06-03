@@ -4,10 +4,6 @@ import {
   LOGIN_FAILURE,
 } from "../constants/loginConstant";
 
-const userInfo = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
-
 const initialState = {
   userInfo: null,
   isLoading: false,

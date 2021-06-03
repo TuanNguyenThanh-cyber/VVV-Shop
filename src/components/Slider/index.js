@@ -10,7 +10,8 @@ export default function Slider() {
       emulateTouch={true}
       showStatus={false}
       showThumbs={false}
-      autoPlay={false}
+      autoPlay={true}
+      infiniteLoop={true}
     >
       <div className="carousel_item">
         <div className="container">
@@ -21,7 +22,7 @@ export default function Slider() {
             <div className="col-5 carousel_item-right">
               <p className="carousel_item-title">Asus Zenbook</p>
               <p className="carousel_item-content">Giảm ngay <span>1.000.000đ</span> (từ ngày 30/4 - 19/05/2021)</p>
-              <button className="carousel_item-btn">Đặt hàng ngay</button>
+              <button className="my-btn">Đặt hàng ngay</button>
             </div>
           </div>
         </div>
@@ -35,7 +36,7 @@ export default function Slider() {
             <div className="col-5 carousel_item-right">
               <p className="carousel_item-title">Asus Zenbook</p>
               <p className="carousel_item-content">Giảm ngay <span>1.000.000đ</span> (từ ngày 30/4 - 19/05/2021)</p>
-              <button className="carousel_item-btn">Đặt hàng ngay</button>
+              <button className="my-btn">Đặt hàng ngay</button>
             </div>
           </div>
         </div>
@@ -49,7 +50,7 @@ export default function Slider() {
             <div className="col-5 carousel_item-right">
               <p className="carousel_item-title">Asus Zenbook</p>
               <p className="carousel_item-content">Giảm ngay <span>1.000.000đ</span> (từ ngày 30/4 - 19/05/2021)</p>
-              <button className="carousel_item-btn">Đặt hàng ngay</button>
+              <button className="my-btn">Đặt hàng ngay</button>
             </div>
           </div>
         </div>
