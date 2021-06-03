@@ -1,0 +1,23 @@
+.termAbout{
+    .container{
+        .card{
+            margin: 0 15px;
+        }
+        .terms{
+            .termAbout_topic{
+                .button_topic{
+                    background-color: #027492;
+                }
+            }
+            .termAbout_info{
+                .terms_picture{
+                    width: 1000px;
+                }
+                .termAbout_info_up{
+                    justify-content: center;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
