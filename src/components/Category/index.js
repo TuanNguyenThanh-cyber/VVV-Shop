@@ -1,20 +1,17 @@
-import React from "react";
-import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./Category.scss";
 
 export default function Category() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    
+  },[])
   return (
     <div className="Category">
       <div className="container">
         <div className="row">
-          <div className="col-2 Category-first">
-            <p className="title">Danh mục sản phẩm của VVVShop</p>
-            <Link className="my-btn" to="/products">
-              Tất cả Sản Phẩm
-            </Link>
-          </div>
-          <div className="col-2 Category-product">
+          <div className="col Category-product">
             <a className="card" href="#">
               <img
                 src="/images/Category/laptop.png"
@@ -26,7 +23,7 @@ export default function Category() {
               </div>
             </a>
           </div>
-          <div className="col-2 Category-product">
+          <div className="col Category-product">
             <a className="card" href="#">
               <img
                 src="/images/Category/phone.png"
@@ -38,7 +35,7 @@ export default function Category() {
               </div>
             </a>
           </div>
-          <div className="col-2 Category-product">
+          <div className="col Category-product">
             <a className="card" href="#">
               <img
                 src="/images/Category/pc.png"
@@ -50,7 +47,7 @@ export default function Category() {
               </div>
             </a>
           </div>
-          <div className="col-2 Category-product">
+          <div className="col Category-product">
             <a className="card" href="#">
               <img
                 src="/images/Category/pk.png"
@@ -62,7 +59,7 @@ export default function Category() {
               </div>
             </a>
           </div>
-          <div className="col-2 Category-product">
+          <div className="col Category-product">
             <a className="card" href="#">
               <img
                 src="/images/Category/chuot.png"
@@ -74,6 +71,7 @@ export default function Category() {
               </div>
             </a>
           </div>
+          
         </div>
       </div>
     </div>

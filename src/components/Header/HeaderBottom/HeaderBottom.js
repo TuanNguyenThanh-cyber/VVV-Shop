@@ -21,28 +21,19 @@ export default function HeaderBottom() {
             <Collapse className="HeaderBottom_Collapse" isOpen={isOpen}>
               <ul>
                 <li>
-                  <Link to="#">PC Gaming</Link>
-                </li>
-                <li>
                   <Link to="#">Laptop</Link>
                 </li>
                 <li>
-                  <Link to="#">Điện Thoại</Link>
+                  <Link to="#">Điện thoại</Link>
                 </li>
                 <li>
-                  <Link to="#">Phụ Kiện</Link>
-                </li>
-                <li>
-                  <Link to="#">Loa/Tai Nghe</Link>
+                  <Link to="#">PC Gaming</Link>
                 </li>
                 <li>
                   <Link to="#">Bàn phím</Link>
                 </li>
                 <li>
-                  <Link to="#">Chuột/Lót chuột</Link>
-                </li>
-                <li>
-                  <Link to="#">Màn hình</Link>
+                  <Link to="#">Chuột</Link>
                 </li>
               </ul>
             </Collapse>
@@ -50,13 +41,13 @@ export default function HeaderBottom() {
           <div className="HeaderBottom_NavMenu col-9">
             <Nav className="HeaderBottom_Nav">
               <NavItem className="HeaderBottom_NavItem">
-                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/home">Trang chủ</NavLink>
+                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/products">Sản phẩm</NavLink>
               </NavItem>
               <NavItem className="HeaderBottom_NavItem">
                 <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/news">Tin tức</NavLink>
               </NavItem>
               <NavItem className="HeaderBottom_NavItem">
-                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/about">Về VVV</NavLink>
+                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/about">Giới thiệu</NavLink>
               </NavItem>
               <NavItem className="HeaderBottom_NavItem">
                 <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/contact">Liên hệ</NavLink>

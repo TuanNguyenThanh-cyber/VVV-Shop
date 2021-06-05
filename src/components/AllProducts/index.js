@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./AllProducts.scss";
 import { productsAction } from "../../redux/actions/productsAction";
 import { Loading } from "../Loading";
+import {formatMoneyVND} from '../../utils/formatMoneyVND'
 
 export default function AllProducts() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function AllProducts() {
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to="/home">Trang chủ</Link>
+              <Link to="/">Trang chủ</Link>
             </li>
             <li className="breadcrumb-item active">Tất cả sản phẩm</li>
           </ol>
@@ -44,7 +45,7 @@ export default function AllProducts() {
                     <div className="col-12">
                       <div className="card-body">
                         <p className="card-title">{item.name}</p>
-                        <p className="card-text">{item.orginalPrice} đ</p>
+                        <p className="card-text">{formatMoneyVND(item.originalPrice)}</p>
                         <button className="my-btn">Mua ngay</button>
                       </div>
                     </div>

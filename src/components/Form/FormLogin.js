@@ -39,7 +39,7 @@ export default function FormLogin() {
 
   if(localStorage.getItem("userLogin") !== null){
     return (
-      <Redirect to="/home"></Redirect>
+      <Redirect to="/"></Redirect>
     )
   }
 

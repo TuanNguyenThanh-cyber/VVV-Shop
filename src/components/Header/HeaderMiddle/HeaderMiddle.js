@@ -32,7 +32,7 @@ export default function HeaderMiddle(props) {
 
   useEffect(() => {
     const handleScrollHeader = () => {
-      if (window.scrollY >= 20) {
+      if (window.scrollY >= 10) {
         setResult(result || isScroll);
       } else {
         setResult(false);
@@ -48,7 +48,7 @@ export default function HeaderMiddle(props) {
     <div className={result ? "HeaderMiddle scroll" : "HeaderMiddle"}>
       <div className="container">
         <Navbar className="HeaderMiddle_navbar row">
-          <Link to="/home" className="HeaderMiddle_navbrand col-3">
+          <Link to="/" className="HeaderMiddle_navbrand col-3">
             <img
               src="/images/logoVVVheader.png"
               alt="Logo"

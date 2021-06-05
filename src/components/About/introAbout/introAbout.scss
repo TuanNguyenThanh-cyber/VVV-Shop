@@ -4,8 +4,12 @@
     .container{
         .breadcrumb{
             .infobreadcrumb{
-                color: #000;
+                color: #027492;
+                font-weight: bold;
                 padding: 0 5px;
+            }
+            .active{
+                color: #6c757d;
             }    
         }
         .imgabout{

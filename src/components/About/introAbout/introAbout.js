@@ -7,13 +7,13 @@ export default function introAbout() {
         <div className="introAbout">
             <div className="container">
                 <div className="breadcrumb">
-                    <Link to="/home" className="infobreadcrumb">Trang chủ</Link>
+                    <Link to="/" className="infobreadcrumb">Trang chủ</Link>
                     <span> / </span>
-                    <Link to="/about" className="infobreadcrumb">Về VVV</Link>
+                    <Link to="/about" className="infobreadcrumb active">Về VVV</Link>
                 </div>
                 <div className="row">
                     <div className="col-6">
-                        <Link to="/home">
+                        <Link to="/">
                             <img
                                 src="/images/vvvshop.jpg"
                                 alt="introLogo"
