@@ -17,16 +17,20 @@ export default function Category() {
       <div className="container">
         <div className="row">
           {categoriesInfo &&
-            categoriesInfo.map((item) => (
-              <div className="col Category-product" key={item.id}>
-                <a className="card" href="#">
-                  <img src={item.logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <p className="card-text">{item.name}</p>
+            categoriesInfo.map((item) => {
+              if(!item.tree.includes("/")){
+                return (
+                  <div className="col Category-product" key={item.id}>
+                    <a className="card" href="#">
+                      <img src={item.logo} className="card-img-top" alt="..." />
+                      <div className="card-body">
+                        <p className="card-text">{item.name}</p>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-            ))}
+                )
+              }
+            })}
         </div>
       </div>
     </div>

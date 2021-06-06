@@ -4,18 +4,31 @@ import { Link } from "react-router-dom";
 import "./AllProducts.scss";
 import { productsAction } from "../../redux/actions/productsAction";
 import { Loading } from "../Loading";
-import {formatMoneyVND} from '../../utils/formatMoneyVND'
+import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { formatMoneyVND } from "../../utils/formatMoneyVND";
 
 export default function AllProducts() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(productsAction());
+    dispatch(productsAction(1));
   }, []);
 
   const { dataProducts, isLoading, error } = useSelector(
     (state) => state.productsReducer
   );
   console.log(dataProducts);
+
+  const pageNumber = [];
+  if (dataProducts) {
+    for (let index = 1; index <= dataProducts.totalPage; index++) {
+      pageNumber.push(index);
+    }
+  }
+
+  const handlePagination = (value) => {
+    console.log("Pagination", value.item);
+    dispatch(productsAction(value.item));
+  };
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -35,7 +48,7 @@ export default function AllProducts() {
       <div className="container">
         <div className="row">
           {dataProducts &&
-            dataProducts.map((item) => (
+            dataProducts.data.map((item) => (
               <div className="col-3" key={item.id}>
                 <div className="card mb-3">
                   <div className="row no-gutters">
@@ -45,7 +58,9 @@ export default function AllProducts() {
                     <div className="col-12">
                       <div className="card-body">
                         <p className="card-title">{item.name}</p>
-                        <p className="card-text">{formatMoneyVND(item.originalPrice)}</p>
+                        <p className="card-text">
+                          {formatMoneyVND(item.originalPrice)}
+                        </p>
                         <button className="my-btn">Mua ngay</button>
                       </div>
                     </div>
@@ -53,6 +68,18 @@ export default function AllProducts() {
                 </div>
               </div>
             ))}
+        </div>
+        <div className="productsPagination">
+          <Pagination aria-label="Page navigation example">
+            {dataProducts &&
+              pageNumber.map((item) => (
+                <PaginationItem>
+                  <PaginationLink onClick={() => handlePagination({ item })}>
+                    {item}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+          </Pagination>
         </div>
       </div>
     </div>
