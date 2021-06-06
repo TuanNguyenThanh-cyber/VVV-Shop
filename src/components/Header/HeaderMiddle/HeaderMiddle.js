@@ -11,21 +11,10 @@ import { FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import "./HeaderMiddle.scss";
 import { Link } from "react-router-dom";
 
+
 export default function HeaderMiddle(props) {
   let { isScroll } = props;
   const [result, setResult] = useState(false);
-
-  // const [isScroll, setIsScroll] = useState(false);
-
-  // const handleScrollHeader = () => {
-  //   if (window.scrollY >= 50) {
-  //     setResult(result || isScroll);
-  //   } else {
-  //     setResult(false);
-  //   }
-  // };
-
-  // window.addEventListener("scroll", handleScrollHeader);
 
   const abortController = new AbortController();
   const signal = abortController.signal;

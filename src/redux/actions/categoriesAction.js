@@ -1,4 +1,4 @@
-import {CATEGORIES_REQUEST, CATEGORIES_SUCCESS, CATEGORIES_FAILURE} from '../constants/categories';
+import {CATEGORIES_REQUEST, CATEGORIES_SUCCESS, CATEGORIES_FAILURE} from '../constants/categoriesConstant';
 import categoriesAPI from '../../services/categoriesAPI'
 
 export function categoriesAction () {

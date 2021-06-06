@@ -1,77 +1,32 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { categoriesAction } from "../../redux/actions/categoriesAction";
 import "./Category.scss";
 
 export default function Category() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    
-  },[])
+    dispatch(categoriesAction());
+  }, []);
+  const { categoriesInfo, isLoading, error } = useSelector(
+    (state) => state.categoriesReducer
+  );
+  console.log(categoriesInfo);
   return (
     <div className="Category">
       <div className="container">
         <div className="row">
-          <div className="col Category-product">
-            <a className="card" href="#">
-              <img
-                src="/images/Category/laptop.png"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">Laptop</p>
+          {categoriesInfo &&
+            categoriesInfo.map((item) => (
+              <div className="col Category-product" key={item.id}>
+                <a className="card" href="#">
+                  <img src={item.logo} className="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <p className="card-text">{item.name}</p>
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>
-          <div className="col Category-product">
-            <a className="card" href="#">
-              <img
-                src="/images/Category/phone.png"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">Điện thoại</p>
-              </div>
-            </a>
-          </div>
-          <div className="col Category-product">
-            <a className="card" href="#">
-              <img
-                src="/images/Category/pc.png"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">PC</p>
-              </div>
-            </a>
-          </div>
-          <div className="col Category-product">
-            <a className="card" href="#">
-              <img
-                src="/images/Category/pk.png"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">Bàn phím</p>
-              </div>
-            </a>
-          </div>
-          <div className="col Category-product">
-            <a className="card" href="#">
-              <img
-                src="/images/Category/chuot.png"
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text">Chuột</p>
-              </div>
-            </a>
-          </div>
-          
+            ))}
         </div>
       </div>
     </div>

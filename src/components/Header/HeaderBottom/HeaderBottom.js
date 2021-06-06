@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Collapse, Button, Nav, NavItem } from "reactstrap";
 import { FaList } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./HeaderBottom.scss";
 import { Link, NavLink } from "react-router-dom";
@@ -9,6 +10,10 @@ export default function HeaderBottom() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const { categoriesInfo, isLoading, error } = useSelector(
+    (state) => state.categoriesReducer
+  );
   return (
     <div className="HeaderBottom">
       <div className="container">
@@ -20,7 +25,12 @@ export default function HeaderBottom() {
             </Button>
             <Collapse className="HeaderBottom_Collapse" isOpen={isOpen}>
               <ul>
-                <li>
+                {categoriesInfo && categoriesInfo.map((item) => (
+                  <li>
+                    <Link to="#">{item.name}</Link>
+                  </li>
+                ))}
+                {/* <li>
                   <Link to="#">Laptop</Link>
                 </li>
                 <li>
@@ -34,23 +44,47 @@ export default function HeaderBottom() {
                 </li>
                 <li>
                   <Link to="#">Chuột</Link>
-                </li>
+                </li> */}
               </ul>
             </Collapse>
           </div>
           <div className="HeaderBottom_NavMenu col-9">
             <Nav className="HeaderBottom_Nav">
               <NavItem className="HeaderBottom_NavItem">
-                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/products">Sản phẩm</NavLink>
+                <NavLink
+                  activeClassName="HeaderBottom_NavLinkSelected"
+                  className="HeaderBottom_NavLink"
+                  to="/products"
+                >
+                  Sản phẩm
+                </NavLink>
               </NavItem>
               <NavItem className="HeaderBottom_NavItem">
-                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/news">Tin tức</NavLink>
+                <NavLink
+                  activeClassName="HeaderBottom_NavLinkSelected"
+                  className="HeaderBottom_NavLink"
+                  to="/news"
+                >
+                  Tin tức
+                </NavLink>
               </NavItem>
               <NavItem className="HeaderBottom_NavItem">
-                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/about">Giới thiệu</NavLink>
+                <NavLink
+                  activeClassName="HeaderBottom_NavLinkSelected"
+                  className="HeaderBottom_NavLink"
+                  to="/about"
+                >
+                  Giới thiệu
+                </NavLink>
               </NavItem>
               <NavItem className="HeaderBottom_NavItem">
-                <NavLink activeClassName="HeaderBottom_NavLinkSelected" className="HeaderBottom_NavLink" to="/contact">Liên hệ</NavLink>
+                <NavLink
+                  activeClassName="HeaderBottom_NavLinkSelected"
+                  className="HeaderBottom_NavLink"
+                  to="/contact"
+                >
+                  Liên hệ
+                </NavLink>
               </NavItem>
             </Nav>
           </div>
