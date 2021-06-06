@@ -6,6 +6,7 @@ const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/Login"));
 const Signup = lazy(() => import("../pages/Signup"));
 const About = lazy(() => import("../pages/About"));
+const Contact = lazy(() => import("../pages/Contact"));
 const Products = lazy(() => import("../pages/Products"));
 const Categories = lazy(() => import("../pages/Categories"));
 const News = lazy(() => import("../pages/News"));
@@ -36,6 +37,9 @@ export default function Router() {
           </Route>
           <Route path="/categories/:lv1">
             <Categories></Categories>
+          </Route>
+          <Route path="/contact" exact>
+             <Contact></Contact>
           </Route>
           <Route path='/PageNotFound'>
             <PageNotFound></PageNotFound>

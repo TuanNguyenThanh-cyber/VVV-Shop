@@ -9,7 +9,7 @@ export default function introAbout() {
                 <div className="breadcrumb">
                     <Link to="/" className="infobreadcrumb">Trang chủ</Link>
                     <span> / </span>
-                    <Link to="/about" className="infobreadcrumb active">Về VVV</Link>
+                    <Link to="/about" className="infobreadcrumb active">Giới thiệu</Link>
                 </div>
                 <div className="row">
                     <div className="col-6">
