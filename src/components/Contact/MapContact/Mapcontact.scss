@@ -1,0 +1,49 @@
+.container{
+    
+    .ggmap{
+        text-align: center;
+        .mapStore{
+            width: 800px;
+            height: 600px;
+        }
+    }
+    
+    .gap-md{
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        height: 50px;
+    }
+    .titleinput{
+        text-align: center;
+    }
+
+    .infocontact{    
+        .forminfo{
+            font-size: 25px;  
+            border-radius: 5px;
+            .titleinfo{
+            margin-top: 10px;
+            padding-left: 200px;
+            }
+            .inputinfo{
+                margin-top: 10px;
+                width: 400px;
+                
+            }
+            .center{
+                margin-top: 10px;
+                text-align: center;
+                .btnsend{
+                    font-size: 20px;
+                    border-radius: 20px;
+                    width: 200px;
+                    text-align: center;
+                    background-color: #027492;
+                }
+            }
+        }
+        
+    }
+}
