@@ -6,24 +6,20 @@ import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import "./Form.scss";
+import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/actions/loginAction";
+import { forgotAction } from "../../redux/actions/forgotAction";
 import { Loading } from "../Loading";
 
 // Tạo schema validation
 const schema = yup.object().shape({
   account: yup.string().required("Account can not empty"),
-  password: yup
-    .string()
-    .required("Password can not empty")
-    .min(8, "Password must be 8 characters or more"),
 });
 
-export default function FormLogin() {
+export default function ForgotPassword() {
   const dispatch = useDispatch();
-  const { userInfo, isLoading, error } = useSelector(
-    (state) => state.loginReducer
+  const { data, isLoading, error } = useSelector(
+    (state) => state.forgotReducer
   );
 
   const {
@@ -32,15 +28,13 @@ export default function FormLogin() {
     formState: { errors, isValid },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
-  const handleLogin = (value) => {
-    console.log(value);
-    dispatch(login(value));
+  const handleForgot = (value) => {
+    console.log(value.account);
+    dispatch(forgotAction(value.account));
   };
 
-  if(localStorage.getItem("userLogin") !== null){
-    return (
-      <Redirect to="/"></Redirect>
-    )
+  if (localStorage.getItem("userLogin") !== null) {
+    return <Redirect to="/"></Redirect>;
   }
 
   if (isLoading) {
@@ -48,9 +42,9 @@ export default function FormLogin() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)}>
+    <form onSubmit={handleSubmit(handleForgot)}>
       <div className="container">
-        <h3 className="form-title">Đăng nhập</h3>
+        <h3 className="form-title">Quên mật khẩu</h3>
         <br />
         <div className="form-container">
           <InputGroup className="form-inputGroup">
@@ -62,37 +56,24 @@ export default function FormLogin() {
             <input
               className="form-input"
               type="text"
-              placeholder="Email or Phone"
+              placeholder="Email"
               {...register("account")}
             />
           </InputGroup>
           {errors.account && (
             <div className="alert alert-danger">{errors.account.message}</div>
           )}
-          <InputGroup className="form-inputGroup">
-            <InputGroupAddon addonType="prepend">
-              <InputGroupText>
-                <RiLockPasswordFill></RiLockPasswordFill>
-              </InputGroupText>
-            </InputGroupAddon>
-            <input
-              className="form-input"
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-            />
-          </InputGroup>
           {errors.password && (
             <div className="alert alert-danger">{errors.password.message}</div>
           )}
           {error && <div className="alert alert-danger">{error}</div>}
           <div className="center">
             <button type="submit" className="btn btn-form">
-              Đăng nhập
+              Xác nhận
             </button>
           </div>
           <p style={{ textAlign: "center" }}>
-            <Link to="/forgotPassword">Quên mật khẩu </Link>
+            <Link to="/login">Đăng nhập </Link>
             hoặc
             <Link to="/signup"> Đăng ký</Link>
           </p>

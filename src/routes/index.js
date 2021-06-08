@@ -10,6 +10,9 @@ const Contact = lazy(() => import("../pages/Contact"));
 const Products = lazy(() => import("../pages/Products"));
 const Categories = lazy(() => import("../pages/Categories"));
 const News = lazy(() => import("../pages/News"));
+const User = lazy(() => import("../pages/UserInfoPage"));
+const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
+const ResetPasswordPage = lazy(() => import("../pages/ResetPasswordPage"));
 const PageNotFound = lazy(() => import("../pages/404"));
 
 export default function Router() {
@@ -35,16 +38,25 @@ export default function Router() {
           <Route path="/products" exact>
             <Products></Products>
           </Route>
-          <Route path="/categories/:lv1">
+          <Route path="/user">
+            <User></User>
+          </Route>
+          <Route path="/categories/*">
             <Categories></Categories>
           </Route>
           <Route path="/contact" exact>
-             <Contact></Contact>
+            <Contact></Contact>
           </Route>
-          <Route path='/PageNotFound'>
+          <Route path="/forgotPassword" exact>
+            <ForgotPassword></ForgotPassword>
+          </Route>
+          <Route path="/reset/:token">
+            <ResetPasswordPage></ResetPasswordPage>
+          </Route>
+          <Route path="/PageNotFound">
             <PageNotFound></PageNotFound>
           </Route>
-          <Redirect from='*' to='/PageNotFound' />
+          <Redirect from="*" to="/PageNotFound" />
         </Switch>
       </BrowserRouter>
     </Suspense>

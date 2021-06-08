@@ -1,23 +1,33 @@
 import React, { useState } from "react";
 import { FaPhoneAlt, FaUser, FaAngleDown } from "react-icons/fa";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Collapse } from "reactstrap";
 import jwt_decode from "jwt-decode";
+import {getInfoUserAction} from '../../../redux/actions/getInfoUserAction'
 import "./HeaderTop.scss";
+import { useDispatch } from "react-redux";
 
 export default function HeaderTop() {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  let objInfoUser = {};
 
   const handleLogout = () => {
     localStorage.removeItem("userLogin");
     localStorage.removeItem("userSignUp");
   };
 
+  const handleGetInfoUser = (id) => {
+    dispatch(getInfoUserAction(id));
+  }
+
   if(localStorage.getItem("userLogin") !== null){
     const token = JSON.parse(localStorage.getItem('userLogin'));
     var decoded = jwt_decode(token.auth_token);
-    console.log(decoded);
+    objInfoUser = {...decoded};
   }
+
+  console.log(objInfoUser._id);
 
   const toggle = () => setIsOpen(!isOpen);
   return (
@@ -49,7 +59,7 @@ export default function HeaderTop() {
                   ) : (
                     <ul>
                       <li>
-                        <Link to="/login">Thông tin tài khoản</Link>
+                        <Link to="/user" onClick={() => handleGetInfoUser(objInfoUser._id)}>Thông tin tài khoản</Link>
                       </li>
                       <li>
                         <Link to="/login" onClick={handleLogout}>

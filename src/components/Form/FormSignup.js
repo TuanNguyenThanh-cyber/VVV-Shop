@@ -182,7 +182,7 @@ export default function FormSignup() {
             </button>
           </div>
           <p style={{ textAlign: "center" }}>
-            <Link>Quên mật khẩu </Link>
+            <Link to="/forgotPassword">Quên mật khẩu </Link>
             hoặc
             <Link to="/login"> Đăng nhập</Link>
           </p>

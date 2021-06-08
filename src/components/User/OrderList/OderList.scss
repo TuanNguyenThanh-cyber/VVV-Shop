@@ -1,0 +1,120 @@
+.list-bill {
+    .title {
+      margin-bottom: 1rem;
+      margin-left: 0;
+      font-size: 1.75rem;
+    }
+  }
+  
+  a,
+  a:hover {
+    text-decoration: none;
+    color: unset;
+  }
+  .c-light-text{
+      color: #AEB0B5;
+  }
+  .c-orange{
+      color: orange;
+      font-weight: bold;
+  }
+  .c-blue{
+      color: #027492;
+  }
+  .c-red{
+      color: #dd3333;
+  }
+  .c-green{
+      color: #008837;
+      font-weight: bold;
+  }
+  .bill {
+    width: 100%;
+    background-color: white;
+    border-radius: 12px;
+    padding: 1rem;
+    padding-bottom: 0;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    color: unset;
+    .unit-price {
+      font-size: 16px;
+      font-weight: lighter;
+      margin-right: 0.5rem;
+    }
+    .unit {
+      font-size: 16px;
+      font-weight: lighter;
+    }
+    .total-price {
+      text-align: right;
+      float: right;
+      font-weight: lighter;
+      font-size: 18px;
+      padding-right: 2rem;
+    }
+  }
+  .bill:hover {
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.3);
+    transition: 0.4s all;
+  }
+  .bill [class*="col-"] {
+    padding: 0;
+  }
+  .bill-head {
+    margin-bottom: 0.5rem;
+    .bill-id {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .bill-status {
+      float: right;
+    }
+  }
+  .bill-body {
+    border-bottom: 1px solid rgba(150, 150, 150, 0.295);
+  }
+  .bill-item {
+    padding: 0;
+    margin-bottom: 1rem;
+    img {
+      width: 5rem;
+      margin-left: 1rem;
+    }
+    .row {
+      padding: 0;
+    }
+  }
+  
+  .bill-item-title {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bill-footer {
+    padding-left: 1rem;
+    height: 5rem;
+    .btn-cancel {
+      background-color: #dd3333;
+      border-radius: 8px;
+      font-size: 14px;
+      color: white;
+      font-weight: lighter;
+      padding: 0.5rem 1rem;
+    }
+    .bill-total {
+      text-align: right;
+      float: right;
+      .price-total {
+        font-size: 20px;
+        font-weight: bold;
+        padding-right: 1rem;
+        font-weight: bold;
+      }
+    }
+  }
+  .bill-footer [class*="col-"] {
+    margin: auto;
+  }
+  
