@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./BannerNew.scss";
 import { blogAction } from "../../../redux/actions/blogAction";
 import { Loading } from "../../Loading";
-import {newsdetailAction} from '../../../redux/actions/newsDetailAction'
+import {newsdetailAction} from '../../../redux/actions/newsDetailAction';
 
 export default function BannerNew() {
     const dispatch = useDispatch();
@@ -70,7 +70,7 @@ export default function BannerNew() {
                                         <img className="newsimages" src="/images/slider1.png" alt="news_image"></img>
                                     </div>
                                     <div className="col-8 newsinfo">
-                                        <Link to={"/news/"+item.name} className="font-weight-bold" onClick={() => handleNewsDetail(item._id)}>{item.name}</Link>
+                                        <Link to={"/news/"+item.slug} className="font-weight-bold" onClick={() => handleNewsDetail(item._id)}>{item.name}</Link>
                                         <p className="author">
                                             <img className="authorimg" src={item.author.avatar}></img>
                                             {item.author.name}</p>

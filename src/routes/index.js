@@ -7,6 +7,7 @@ const Login = lazy(() => import("../pages/Login"));
 const Signup = lazy(() => import("../pages/Signup"));
 const About = lazy(() => import("../pages/About"));
 const Contact = lazy(() => import("../pages/Contact"));
+const Newsdetail = lazy(() => import("../pages/News_detail"));
 const Products = lazy(() => import("../pages/Products"));
 const Categories = lazy(() => import("../pages/Categories"));
 const News = lazy(() => import("../pages/News"));
@@ -28,7 +29,7 @@ export default function Router() {
           </Route>
           <Route path="/news/:id" exact>
             {/* Chi tiết tin tức */}
-            <News></News>
+            <Newsdetail></Newsdetail>
           </Route>
           <Route path="/login" exact>
             <Login></Login>

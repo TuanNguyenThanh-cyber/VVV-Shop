@@ -1,0 +1,89 @@
+.newsdetail{
+    .container{
+        .gap-md{
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            height: 50px;
+        }
+        .breadcrumb{
+            .infobreadcrumb{
+                color: #027492;
+                font-weight: bold;
+                padding: 0 5px;
+            }
+            .active{
+                color: #6c757d;
+                display: inline-block;
+                border-bottom: 1px solid;
+            }    
+        }
+        .newsimg{
+            width: 100%;
+            height: auto;
+            .image{
+                width: 100%;
+            }
+        }
+        .newsbody{
+            .newsinfo{
+                .newstopic{
+                    text-align: center;
+                }
+                .authinfo{
+                    .authimage{
+                        margin: 5px;
+                        .authimg{
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                        }
+                        
+                    }
+                    .authname{
+                        margin: 5px;
+                    }
+                    .timecreate{
+                        margin: 5px;
+                    }
+                }
+                .info{
+                    font-size: 20px;
+                }
+            }
+            .newspopular{
+                .bordertitle{
+                    border-bottom: 3px solid #027492;
+                }
+                .titlepopular{
+                    background-color: #027492;
+                    color: #fff;
+                }
+                .newsimages{
+
+                }
+                .newsinfo{
+
+                }
+                .author{
+                    .authimg{
+                        width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                    }
+                }
+                .review{
+                    overflow: hidden;
+                    width: 200px;
+                    height: 50px;
+                    text-overflow: ellipsis; 
+                    white-space: nowrap; 
+                }
+                .morebtn{
+
+                }
+            }
+        }
+    }
+}
