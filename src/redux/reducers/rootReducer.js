@@ -7,6 +7,7 @@ import blogReducer from './blogReducer';
 import getInfoUserReducer from './getInfoUserReducer';
 import forgotReducer from './forgotReducer';
 import resetPasswordReducer from './resetPasswordReducer';
+import newsDetailReducer from './newsDetailReducer';
 
 const rootReducer = combineReducers({
   // Nơi khai báo các reducer con
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   blogReducer,
   getInfoUserReducer,
   forgotReducer,
-  resetPasswordReducer
+  resetPasswordReducer,
+  newsDetailReducer
 });
 
 export default rootReducer;

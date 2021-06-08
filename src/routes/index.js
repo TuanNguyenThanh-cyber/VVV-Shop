@@ -26,6 +26,10 @@ export default function Router() {
           <Route path="/news" exact>
             <News></News>
           </Route>
+          <Route path="/news/:id" exact>
+            {/* Chi tiết tin tức */}
+            <News></News>
+          </Route>
           <Route path="/login" exact>
             <Login></Login>
           </Route>

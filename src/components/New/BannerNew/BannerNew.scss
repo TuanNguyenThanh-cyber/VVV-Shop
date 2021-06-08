@@ -48,6 +48,41 @@
                 margin-left: 10px;
             }
         }
-        
+        .row{
+            
+            .titlepopular{
+                background-color: #027492;
+                color: #fff;
+            }
+        }
+        .bordertitle{
+            border-bottom: 3px solid #027492;
+        }
+        .row{
+            font-size: 20px;
+            .newsimages{
+                padding-left: 0;
+                width: 7rem;
+                height: 5em;
+            }
+            .newsinfo{
+                .author{
+                    .authorimg{
+                        margin: 3px 3px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                    }
+                }
+                .review{
+                    overflow: hidden;
+                    width: 200px;
+                    height: 50px;
+                    text-overflow: ellipsis; 
+                    white-space: nowrap; 
+                }
+            }
+
+        }
     }
 }
