@@ -6,11 +6,11 @@ import { RiLockPasswordFill, RiLockPasswordLine } from "react-icons/ri";
 import { Link, Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import "./Form.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../redux/actions/signupAction";
 import { Loading } from "../Loading";
+import "./Form.scss";
 
 // Regex VietNam phone number
 const phoneRegVn = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
@@ -25,7 +25,7 @@ const schema = yup.object().shape({
   phone: yup
     .string()
     .required("Phone can not empty")
-    .matches(phoneRegVn, "Email has wrong format"),
+    .matches(phoneRegVn, "Phone has wrong format"),
   address: yup.string().required("Address can not empty"),
   password: yup
     .string()

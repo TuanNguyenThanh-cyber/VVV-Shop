@@ -1,6 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import jwt_decode from "jwt-decode";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import "./UserInfo.scss";
+
+// Regex VietNam phone number
+const phoneRegVn = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+
+// Tạo schema validation
+const schema = yup.object().shape({
+  name: yup.string().required("Name can not empty"),
+  email: yup
+    .string()
+    .required("Email can not empty")
+    .email("Email has wrong format"),
+  phone: yup
+    .string()
+    .required("Phone can not empty")
+    .matches(phoneRegVn, "Phone has wrong format"),
+  address: yup.string().required("Address can not empty"),
+});
 
 export default function UserInfo() {
   const [image, setImage] = useState();
@@ -8,6 +28,12 @@ export default function UserInfo() {
   const fileInputRef = useRef();
   const token = JSON.parse(localStorage.getItem("userLogin"));
   const decode = jwt_decode(token.auth_token);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
   const handleClickImage = (event) => {
     event.preventDefault();
@@ -41,7 +67,11 @@ export default function UserInfo() {
       <div className="row box">
         <div className="col-lg-6">
           <div className="img-upload text-center">
-            {preview ? <img src={preview} alt="" /> : <img src={decode.avatar}></img>}
+            {preview ? (
+              <img src={preview} alt="" />
+            ) : (
+              <img src={decode.avatar}></img>
+            )}
             <p className="c-light-text">
               Dung lượng file tối đa 1 MB Định dạng: .JPEG, .PNG
             </p>
@@ -67,9 +97,12 @@ export default function UserInfo() {
                   className="form-control form__input"
                   type="text"
                   name="name"
-                  accept="image/*"
+                  {...register("name")}
                 />
               </div>
+              {errors.name && (
+                <div className="alert alert-danger">{errors.name.message}</div>
+              )}
               <div className="form-group">
                 <label htmlFor="my-input">Số điện thoại</label>
                 <input
@@ -77,71 +110,46 @@ export default function UserInfo() {
                   className="form-control form__input"
                   type="text"
                   name
+                  {...register("phone")}
                 />
               </div>
+              {errors.phone && (
+                <div className="alert alert-danger">{errors.phone.message}</div>
+              )}
               <div className="form-group">
-                <label htmlFor="my-input">Ngày sinh</label>
+                <label htmlFor="my-input">Email</label>
                 <input
                   id="my-input"
                   className="form-control form__input"
-                  type="date"
+                  type="text"
                   name
+                  {...register("email")}
                 />
               </div>
-              <div className="form-check">
-                <label className="container-form-check">
-                  <input type="radio" name="gender" defaultChecked />
-                  <i className="cc">
-                    <span className="label">Nam</span>
-                  </i>
-                  <span className="checkmark"></span>
-                </label>
-                <label className="container-form-check">
-                  <input type="radio" name="gender" />
-                  <i className="cc">
-                    <span className="label">Nữ</span>
-                  </i>
-                  <span className="checkmark"></span>
-                </label>
-                <label className="container-form-check">
-                  <input type="radio" name="gender" />
-                  <i className="cc">
-                    <span className="label">Khác</span>
-                  </i>
-                  <span className="checkmark"></span>
-                </label>
-              </div>
-              <div className="form-row form-select">
-                <div className="col-6">
-                  <label htmlFor>Tỉnh/ Thành phố</label>
-                  <select className="form-control form__input" name id>
-                    <option value="selected">Hồ Chí Minh</option>
-                    <option value>Long An</option>
-                    <option value>Trà Vinh</option>
-                    <option value>Đồng Nai</option>
-                  </select>
-                </div>
-                <div className="col 6 form-group">
-                  <label htmlFor>Quận/ Huyện</label>
-                  <select className="form-control form__input" name id>
-                    <option value="selected">Thủ Đức</option>
-                    <option value="selected">Quận 1</option>
-                    <option value="selected">Quận 2</option>
-                    <option value="selected">Quận 3</option>
-                  </select>
-                </div>
-              </div>
+              {errors.email && (
+                <div className="alert alert-danger">{errors.email.message}</div>
+              )}
               <div className="form-group">
-                <label htmlFor>Địa chỉ cụ thể</label>
+                <label htmlFor>Địa chỉ</label>
                 <textarea
                   name
                   id
                   className="form-control form__input"
-                  style={{ height: 60 }}
+                  style={{ height: 100 }}
                   defaultValue={""}
+                  {...register("address")}
                 />
               </div>
-              <button type="submit" className="btn btn-submit">
+              {errors.address && (
+                <div className="alert alert-danger">
+                  {errors.address.message}
+                </div>
+              )}
+              <button
+                type="submit"
+                className="btn btn-submit"
+                disabled={!isValid}
+              >
                 Cập nhật
               </button>
             </form>
