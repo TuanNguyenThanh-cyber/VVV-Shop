@@ -8,11 +8,6 @@ import newsdetailAction from '../../redux/actions/newsDetailAction';
 
 export default function Newsdetail() {
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-     dispatch(blogAction());
-    }, []);
-
     const { datablog, isLoadingg, err } = useSelector(
      (state) => state.blogReducer
     );
