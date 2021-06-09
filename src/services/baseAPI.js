@@ -9,6 +9,8 @@ baseAPI.interceptors.request.use(
   (config) => {
     const token = window.localStorage.getItem("auth_token");
 
+    console.log("baseAPI",token);
+
     if(token){
       config.headers.auth_token = token;
     }

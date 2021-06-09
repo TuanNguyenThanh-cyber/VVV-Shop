@@ -44,7 +44,7 @@ export default function ResetPassword() {
     formState: { errors, isValid },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
-  const handleSignup = (value) => {
+  const handleResetPassword = (value) => {
     let dataResetPassword = {
       password: value.password,
     };
@@ -56,7 +56,7 @@ export default function ResetPassword() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleSignup)}>
+    <form onSubmit={handleSubmit(handleResetPassword)}>
       <div className="container">
         <h3 className="form-title">Reset Password</h3>
         <br />

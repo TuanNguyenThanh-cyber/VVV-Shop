@@ -8,6 +8,7 @@ import getInfoUserReducer from './getInfoUserReducer';
 import forgotReducer from './forgotReducer';
 import resetPasswordReducer from './resetPasswordReducer';
 import newsDetailReducer from './newsDetailReducer';
+import updateInfoUserReducer from './updateInfoUserReducer';
 
 const rootReducer = combineReducers({
   // Nơi khai báo các reducer con
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   getInfoUserReducer,
   forgotReducer,
   resetPasswordReducer,
-  newsDetailReducer
+  newsDetailReducer,
+  updateInfoUserReducer,
 });
 
 export default rootReducer;

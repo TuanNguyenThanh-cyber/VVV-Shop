@@ -3,7 +3,10 @@ import jwt_decode from "jwt-decode";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { updateInfoUserAction } from "../../../redux/actions/updateInfoUserAction";
 import "./UserInfo.scss";
+import { Redirect } from "react-router";
 
 // Regex VietNam phone number
 const phoneRegVn = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
@@ -26,14 +29,27 @@ export default function UserInfo() {
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   const fileInputRef = useRef();
-  const token = JSON.parse(localStorage.getItem("userLogin"));
-  const decode = jwt_decode(token.auth_token);
+  const token = localStorage.getItem("auth_token");
+  const decode = jwt_decode(token);
+  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
+
+  const { dataUser } = useSelector(
+    (state) => state.getInfoUserReducer
+  );
+
+  const { dataUpdateUser } = useSelector(
+    (state) => state.updateInfoUserReducer
+  );
+
+  if(dataUpdateUser){
+    alert("Đã cập nhật thành công !");
+  }
 
   const handleClickImage = (event) => {
     event.preventDefault();
@@ -49,6 +65,13 @@ export default function UserInfo() {
     }
   };
 
+  const handleUpdateUser = (value) => {
+    const objUserUpdate = { ...value, avatar: preview };
+    console.log(value);
+    const id = decode._id;
+    dispatch(updateInfoUserAction(id, objUserUpdate));
+  };
+
   useEffect(() => {
     if (image) {
       const reader = new FileReader();
@@ -61,7 +84,10 @@ export default function UserInfo() {
     }
   }, [image]);
 
-  console.log(preview);
+  if(localStorage.getItem("auth_token") !== null){
+    <Redirect to="/login"></Redirect>
+  }
+
   return (
     <div>
       <div className="row box">
@@ -70,7 +96,7 @@ export default function UserInfo() {
             {preview ? (
               <img src={preview} alt="" />
             ) : (
-              <img src={decode.avatar}></img>
+              <img src={dataUser.avatar}></img>
             )}
             <p className="c-light-text">
               Dung lượng file tối đa 1 MB Định dạng: .JPEG, .PNG
@@ -88,7 +114,7 @@ export default function UserInfo() {
         </div>
         <div className="col-lg-6">
           <div className="infor-form">
-            <form action>
+            <form onSubmit={handleSubmit(handleUpdateUser)}>
               <h3 className="title">Thông tin tài khoản</h3>
               <div className="form-group">
                 <label htmlFor="my-input">Họ và tên</label>
@@ -98,6 +124,7 @@ export default function UserInfo() {
                   type="text"
                   name="name"
                   {...register("name")}
+                  placeholder={dataUser.name}
                 />
               </div>
               {errors.name && (
@@ -111,6 +138,7 @@ export default function UserInfo() {
                   type="text"
                   name
                   {...register("phone")}
+                  placeholder={dataUser.phone}
                 />
               </div>
               {errors.phone && (
@@ -124,6 +152,7 @@ export default function UserInfo() {
                   type="text"
                   name
                   {...register("email")}
+                  placeholder={dataUser.email}
                 />
               </div>
               {errors.email && (
@@ -138,6 +167,7 @@ export default function UserInfo() {
                   style={{ height: 100 }}
                   defaultValue={""}
                   {...register("address")}
+                  placeholder={dataUser.address}
                 />
               </div>
               {errors.address && (

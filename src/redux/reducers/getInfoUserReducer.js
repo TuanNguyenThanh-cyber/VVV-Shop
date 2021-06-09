@@ -9,7 +9,7 @@ const initialState = {
   error: null,
 };
 
-function blogReducer(state = initialState, action) {
+function getInfoUserReducer(state = initialState, action) {
   switch (action.type) {
     case GET_INFOUSER_REQUEST: {
       return { ...state, isLoading: true, error: null };
@@ -25,4 +25,4 @@ function blogReducer(state = initialState, action) {
   }
 }
 
-export default blogReducer;
+export default getInfoUserReducer;

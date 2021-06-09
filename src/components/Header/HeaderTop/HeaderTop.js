@@ -13,7 +13,7 @@ export default function HeaderTop() {
   let objInfoUser = {};
 
   const handleLogout = () => {
-    localStorage.removeItem("userLogin");
+    localStorage.removeItem("auth_token");
     localStorage.removeItem("userSignUp");
   };
 
@@ -21,9 +21,9 @@ export default function HeaderTop() {
     dispatch(getInfoUserAction(id));
   }
 
-  if(localStorage.getItem("userLogin") !== null){
-    const token = JSON.parse(localStorage.getItem('userLogin'));
-    var decoded = jwt_decode(token.auth_token);
+  if(localStorage.getItem("auth_token") !== null){
+    const token = localStorage.getItem('auth_token');
+    var decoded = jwt_decode(token);
     objInfoUser = {...decoded};
   }
 
@@ -43,11 +43,11 @@ export default function HeaderTop() {
           <div className="HeaderTop_Right col-6">
             <div className="HeaderTop_RightContainer">
               <button className="HeaderTop_Right-BtnAccount" onClick={toggle}>
-                {localStorage.getItem('userLogin') === null ? <FaUser className="HeaderTop_Right-BtnIcon"></FaUser> : <img src={decoded.avatar} className="HeaderTop_Right-AvatarIcon" />} 
-                {localStorage.getItem('userLogin') === null ? (<span>Tài khoản</span>) : (<span>{decoded.name}</span>)}
+                {localStorage.getItem('auth_token') === null ? <FaUser className="HeaderTop_Right-BtnIcon"></FaUser> : <img src={decoded.avatar} className="HeaderTop_Right-AvatarIcon" />} 
+                {localStorage.getItem('auth_token') === null ? (<span>Tài khoản</span>) : (<span>{decoded.name}</span>)}
                 <FaAngleDown className="HeaderTop_Right-BtnIcon"></FaAngleDown>
                 <Collapse className="HeaderTop_Right-Collapse" isOpen={isOpen}>
-                  {localStorage.getItem("userLogin") === null ? (
+                  {localStorage.getItem("auth_token") === null ? (
                     <ul>
                       <li>
                         <Link to="/login">Đăng nhập</Link>

@@ -33,7 +33,7 @@ export default function ForgotPassword() {
     dispatch(forgotAction(value.account));
   };
 
-  if (localStorage.getItem("userLogin") !== null) {
+  if (localStorage.getItem("auth_token") !== null) {
     return <Redirect to="/"></Redirect>;
   }
 
