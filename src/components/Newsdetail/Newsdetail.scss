@@ -1,4 +1,16 @@
 .newsdetail{
+    .breadcrumb{
+        .infobreadcrumb{
+            color: #027492;
+            font-weight: bold;
+            padding: 0 5px;
+        }
+        .active{
+            color: #6c757d;
+            display: inline-block;
+            border-bottom: 1px solid;
+        }    
+    }
     .container{
         .gap-md{
             display: block;
@@ -7,18 +19,7 @@
             padding: 0;
             height: 50px;
         }
-        .breadcrumb{
-            .infobreadcrumb{
-                color: #027492;
-                font-weight: bold;
-                padding: 0 5px;
-            }
-            .active{
-                color: #6c757d;
-                display: inline-block;
-                border-bottom: 1px solid;
-            }    
-        }
+        
         .newsimg{
             width: 100%;
             height: auto;
@@ -32,6 +33,8 @@
                     text-align: center;
                 }
                 .authinfo{
+                    width: 100%;
+                    text-align: center;
                     .authimage{
                         margin: 5px;
                         .authimg{
@@ -49,39 +52,59 @@
                     }
                 }
                 .info{
+                    width: 100%;
                     font-size: 20px;
                 }
             }
             .newspopular{
                 .bordertitle{
                     border-bottom: 3px solid #027492;
-                }
                 .titlepopular{
                     background-color: #027492;
                     color: #fff;
+                    padding: 2px 4px;
                 }
+            }
+            .imgbox{
+                padding: 0;
+
                 .newsimages{
-
+                    width: 100%;
+                    height: 100%;
                 }
+            }    
+                
                 .newsinfo{
-
+  
+                    .newsname{
+                        color: #000;
+                    }
+                }
+                .newsinfo:hover{
+                    cursor: pointer;
+                    .newsname{
+                        color:#027492;
+                    }
+                    .newsnamepopular{
+                        color: #027492;
+    
+                    }
                 }
                 .author{
+                    margin: 5px;
                     .authimg{
                         width: 20px;
                             height: 20px;
                             border-radius: 50%;
                     }
                 }
-                .review{
-                    overflow: hidden;
-                    width: 200px;
-                    height: 50px;
-                    text-overflow: ellipsis; 
-                    white-space: nowrap; 
-                }
+                
                 .morebtn{
-
+                    text-align: center;
+                        .btn{
+                            background-color: #027492;
+                            color: #fff;
+                        }
                 }
             }
         }

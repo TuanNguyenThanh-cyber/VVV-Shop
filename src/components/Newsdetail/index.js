@@ -14,16 +14,16 @@ export default function Newsdetail() {
   const { datanewsdetail, isLoading, error } = useSelector(
     (state) => state.newsDetailReducer
   );
-  console.log(datanewsdetail);
+  // console.log(datanewsdetail);
   const { datablog, isLoadingg, err } = useSelector(
     (state) => state.blogReducer
   );
 
   return (
     <new className="newsdetail">
-      <div className="container">
-        <div className="breadcrumb">
-          <Link to="/" className="infobreadcrumb">
+      <div className="breadcrumb">
+          <div className="container">
+            <Link to="/" className="infobreadcrumb">
             Trang chủ
           </Link>
           <span> / </span>
@@ -34,7 +34,11 @@ export default function Newsdetail() {
           <Link to="#" className="infobreadcrumb active">
             {datanewsdetail.name}
           </Link>
+          </div>
+          
         </div>
+      <div className="container">
+        
 
         <div className="newsimg">
           <img
@@ -46,7 +50,7 @@ export default function Newsdetail() {
         <div className="row newsbody">
           <div className="col-8 newsinfo">
             <h3 className="newstopic">{datanewsdetail.name}</h3>
-            <div className="row authinfo">
+            <div className="authinfo">
               <div className="authimage">
                 <img
                   className="authimg"
@@ -68,7 +72,7 @@ export default function Newsdetail() {
               datablog.map((item) => (
                 <>
                   <div className="row">
-                    <div className="col-4">
+                    <div className="col-4 imgbox">
                       <img
                         className="newsimages"
                         src="#"
@@ -76,14 +80,13 @@ export default function Newsdetail() {
                       ></img>
                     </div>
                     <div className="col-8 newsinfo">
-                      <a href="#" className="font-weight-bold">
+                      <a href="#" className="font-weight-bold newsname">
                         {item.name}
                       </a>
                       <p className="author">
                         <img className="authimg" src={item.author.avatar}></img>
-                        {item.author.name}
+                        {item.createdAt}
                       </p>
-                      <p className="review">{item.html}</p>
                     </div>
                   </div>
                   <hr></hr>
@@ -93,7 +96,7 @@ export default function Newsdetail() {
             <div className="row">
               <div className="col">
                 <div className="morebtn">
-                  <button>Xem thêm</button>
+                  <button className="btn">Xem thêm</button>
                 </div>
               </div>
             </div>
