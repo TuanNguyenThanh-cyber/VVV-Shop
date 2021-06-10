@@ -6,14 +6,11 @@ import { blogAction } from "../../redux/actions/blogAction";
 import { newsdetailAction } from "../../redux/actions/newsDetailAction";
 
 export default function Newsdetail() {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(blogAction());
-  // }, []);
-
   const { datanewsdetail, isLoading, error } = useSelector(
     (state) => state.newsDetailReducer
   );
+
+  console.log("datanewsdetail", datanewsdetail);
 
   const { datablog, isLoadingg, err } = useSelector(
     (state) => state.blogReducer
@@ -31,9 +28,7 @@ export default function Newsdetail() {
             Tin tức
           </Link>
           <span> / </span>
-          <Link to="#" className="infobreadcrumb active">
-            {datanewsdetail.name}
-          </Link>
+          <Link className="infobreadcrumb active">{datanewsdetail.name}</Link>
         </div>
 
         <div className="newsimg">

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import "./AllProducts.scss";
 import { productsAction } from "../../redux/actions/productsAction";
-import {productDetailAction } from "../../redux/actions/productDetailAction";
+// import {productDetailAction } from "../../redux/actions/productDetailAction";
 import { Loading } from "../Loading";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import { formatMoneyVND } from "../../utils/formatMoneyVND";
@@ -26,11 +26,11 @@ export default function AllProducts() {
     }
   }
 
-  const HandleProductDetail = (item) =>{
+  // const HandleProductDetail = (item) =>{
     
-    dispatch(productDetailAction(item._id));
-    // <Redirect to={"/products/"+item.name}></Redirect>
-  }
+  //   dispatch(productDetailAction(item._id));
+  //   // <Redirect to={"/products/"+item.name}></Redirect>
+  // }
 
   const handlePagination = (value) => {
     console.log("Pagination", value.item);
@@ -68,8 +68,8 @@ export default function AllProducts() {
                         <p className="card-text">
                           {formatMoneyVND(item.originalPrice)}
                         </p>
-                        <Link to={"/products/" + item.slug}>
-                          <button className="my-btn" onClick={() => HandleProductDetail(item)}>Mua ngay</button>
+                        <Link to={"/products/" + item._id}>
+                          <button className="my-btn">Mua ngay</button>
                         </Link>
                       </div>
                     </div>
