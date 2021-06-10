@@ -3,9 +3,10 @@ import { FaPhoneAlt, FaUser, FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Collapse } from "reactstrap";
 import jwt_decode from "jwt-decode";
-import {getInfoUserAction} from '../../../redux/actions/getInfoUserAction'
+import { getInfoUserAction } from "../../../redux/actions/getInfoUserAction";
 import "./HeaderTop.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 export default function HeaderTop() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,18 +14,25 @@ export default function HeaderTop() {
   let objInfoUser = {};
 
   const handleLogout = () => {
-    localStorage.removeItem("auth_token");
-    localStorage.removeItem("userSignUp");
+    let answer = window.confirm("Are you sure about that ?");
+    if (answer) {
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("userSignUp");
+    }
   };
 
   const handleGetInfoUser = (id) => {
     dispatch(getInfoUserAction(id));
-  }
+  };
 
-  if(localStorage.getItem("auth_token") !== null){
-    const token = localStorage.getItem('auth_token');
+  const { dataUpdateUser } = useSelector(
+    (state) => state.updateInfoUserReducer
+  );
+
+  if (localStorage.getItem("auth_token") !== null) {
+    const token = localStorage.getItem("auth_token");
     var decoded = jwt_decode(token);
-    objInfoUser = {...decoded};
+    objInfoUser = { ...decoded };
   }
 
   console.log(objInfoUser._id);
@@ -43,8 +51,19 @@ export default function HeaderTop() {
           <div className="HeaderTop_Right col-6">
             <div className="HeaderTop_RightContainer">
               <button className="HeaderTop_Right-BtnAccount" onClick={toggle}>
-                {localStorage.getItem('auth_token') === null ? <FaUser className="HeaderTop_Right-BtnIcon"></FaUser> : <img src={decoded.avatar} className="HeaderTop_Right-AvatarIcon" />} 
-                {localStorage.getItem('auth_token') === null ? (<span>Tài khoản</span>) : (<span>{decoded.name}</span>)}
+                {localStorage.getItem("auth_token") === null ? (
+                  <FaUser className="HeaderTop_Right-BtnIcon"></FaUser>
+                ) : (
+                  <img
+                    src={decoded.avatar}
+                    className="HeaderTop_Right-AvatarIcon"
+                  />
+                )}
+                {localStorage.getItem("auth_token") === null ? (
+                  <span>Tài khoản</span>
+                ) : (
+                  <span>{dataUpdateUser ? dataUpdateUser.name : decoded.name}</span>
+                )}
                 <FaAngleDown className="HeaderTop_Right-BtnIcon"></FaAngleDown>
                 <Collapse className="HeaderTop_Right-Collapse" isOpen={isOpen}>
                   {localStorage.getItem("auth_token") === null ? (
@@ -59,7 +78,12 @@ export default function HeaderTop() {
                   ) : (
                     <ul>
                       <li>
-                        <Link to="/user" onClick={() => handleGetInfoUser(objInfoUser._id)}>Thông tin tài khoản</Link>
+                        <Link
+                          to="/user"
+                          onClick={() => handleGetInfoUser(objInfoUser._id)}
+                        >
+                          Thông tin tài khoản
+                        </Link>
                       </li>
                       <li>
                         <Link to="/login" onClick={handleLogout}>

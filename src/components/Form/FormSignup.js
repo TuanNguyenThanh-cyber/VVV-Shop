@@ -56,6 +56,7 @@ export default function FormSignup() {
       phone: value.phone,
       address: value.address,
       password: value.password,
+      avatar: "https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-3&_nc_sid=7206a8&_nc_ohc=kD8TgOu1pzYAX8JAzIl&_nc_ht=scontent.fsgn5-6.fna&oh=81482383c01711bdee6a54cf816d5d9c&oe=60E7F2F8"
     };
     console.log(dataUser);
     dispatch(signup(dataUser));

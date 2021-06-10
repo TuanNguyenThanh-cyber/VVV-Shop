@@ -18,7 +18,7 @@ const schema = yup.object().shape({
 
 export default function ForgotPassword() {
   const dispatch = useDispatch();
-  const { data, isLoading, error } = useSelector(
+  const { dataUser, isLoading, error } = useSelector(
     (state) => state.forgotReducer
   );
 
@@ -72,6 +72,7 @@ export default function ForgotPassword() {
               Xác nhận
             </button>
           </div>
+          {dataUser && <div className="alert alert-danger">{dataUser.message}</div>}
           <p style={{ textAlign: "center" }}>
             <Link to="/login">Đăng nhập </Link>
             hoặc

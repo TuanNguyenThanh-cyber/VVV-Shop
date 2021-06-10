@@ -4,7 +4,7 @@ import {
     FORGOT_FAILURE,
   } from "../constants/forgotConstants";
   const initialState = {
-    data: null,
+    dataUser: null,
     isLoading: false,
     error: null,
   };

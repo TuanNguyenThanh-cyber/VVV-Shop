@@ -39,17 +39,11 @@ export default function UserInfo() {
     formState: { errors, isValid },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
-  const { dataUser } = useSelector(
-    (state) => state.getInfoUserReducer
-  );
+  const { dataUser } = useSelector((state) => state.getInfoUserReducer);
 
-  const { dataUpdateUser } = useSelector(
-    (state) => state.updateInfoUserReducer
-  );
+  let { dataUpdateUser } = useSelector((state) => state.updateInfoUserReducer);
 
-  if(dataUpdateUser){
-    alert("Đã cập nhật thành công !");
-  }
+  console.log(dataUpdateUser);
 
   const handleClickImage = (event) => {
     event.preventDefault();
@@ -84,8 +78,8 @@ export default function UserInfo() {
     }
   }, [image]);
 
-  if(localStorage.getItem("auth_token") !== null){
-    <Redirect to="/login"></Redirect>
+  if (localStorage.getItem("auth_token") !== null) {
+    <Redirect to="/login"></Redirect>;
   }
 
   return (
@@ -182,6 +176,11 @@ export default function UserInfo() {
               >
                 Cập nhật
               </button>
+              {dataUpdateUser && (
+                <div className="alert alert-danger">
+                  Update thông tin thành công !
+                </div>
+              )}
             </form>
           </div>
         </div>

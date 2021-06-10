@@ -8,9 +8,9 @@ import { newsdetailAction } from "../../../redux/actions/newsDetailAction";
 
 export default function BannerNew() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(blogAction());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(blogAction());
+  // }, []);
 
   const { datablog, isLoading, error } = useSelector(
     (state) => state.blogReducer

@@ -12,7 +12,7 @@ export function forgotAction(email) {
       const { data } = await forgotAPI(email);
       dispatch({ type: FORGOT_SUCCESS, payload: { data } });
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       dispatch({
         type: FORGOT_FAILURE,
         payload: { error: error.response },

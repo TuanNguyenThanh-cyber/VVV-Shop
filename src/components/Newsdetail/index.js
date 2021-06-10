@@ -14,7 +14,7 @@ export default function Newsdetail() {
   const { datanewsdetail, isLoading, error } = useSelector(
     (state) => state.newsDetailReducer
   );
-  console.log(datanewsdetail);
+
   const { datablog, isLoadingg, err } = useSelector(
     (state) => state.blogReducer
   );

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPasswordAcion } from "../../../redux/actions/resetPasswordAction";
 import jwt_decode from "jwt-decode";
-import { Redirect } from "react-router";
+import { Redirect, Route } from "react-router";
 
 // Tạo schema validation
 const schema = yup.object().shape({
@@ -33,18 +33,24 @@ export default function ResetPassword() {
 
   let { data } = useSelector((state) => state.resetPasswordReducer);
 
-  if (data) {
-    alert("Đã đổi thành công mật khẩu mới ! Vui lòng đăng nhập lại !");
-    data = null;
-    return <Redirect to="/login"></Redirect>;
-  }
-
   const handleResetPassword = (value) => {
     let dataResetPassword = {
       password: value.password,
     };
     dispatch(resetPasswordAcion(decoded._id, dataResetPassword));
   };
+
+  if (data) {
+    var answer = alert("Đổi mật khẩu thành công, quay lại trang đăng nhập !")
+    if(answer === undefined){
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("userSignUp");
+      return(
+        <Redirect from="/user/restPassword" to="/login"></Redirect>
+      )
+    }
+  }
+
   return (
     <div>
       <div class="row box">
@@ -97,6 +103,11 @@ export default function ResetPassword() {
                   Submit
                 </button>
               </div>
+              {data && (
+                <div className="alert alert-danger">
+                  Đổi mật khẩu thành công thành công !
+                </div>
+              )}
             </form>
             <div class="gap-sm"></div>
           </div>
