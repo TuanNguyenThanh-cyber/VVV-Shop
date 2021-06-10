@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import "./Newsdetail.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { blogAction } from "../../redux/actions/blogAction";
-import {newsdetailAction} from "../../redux/actions/newsDetailAction";
+import { newsdetailAction } from "../../redux/actions/newsDetailAction";
 
 export default function Newsdetail() {
   // const dispatch = useDispatch();
@@ -11,14 +11,13 @@ export default function Newsdetail() {
   //   dispatch(blogAction());
   // }, []);
 
-  const { datablog, isLoadingg, err } = useSelector(
-    (state) => state.blogReducer
-  );
-
   const { datanewsdetail, isLoading, error } = useSelector(
     (state) => state.newsDetailReducer
   );
   console.log(datanewsdetail);
+  const { datablog, isLoadingg, err } = useSelector(
+    (state) => state.blogReducer
+  );
 
   return (
     <new className="newsdetail">

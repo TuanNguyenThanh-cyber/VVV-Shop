@@ -9,6 +9,7 @@ const About = lazy(() => import("../pages/About"));
 const Contact = lazy(() => import("../pages/Contact"));
 const Newsdetail = lazy(() => import("../pages/News_detail"));
 const Products = lazy(() => import("../pages/Products"));
+const ProductDetail = lazy(() => import("../pages/ProductDetail"));
 const Categories = lazy(() => import("../pages/Categories"));
 const News = lazy(() => import("../pages/News"));
 const User = lazy(() => import("../pages/UserInfoPage"));
@@ -42,6 +43,10 @@ export default function Router() {
           </Route>
           <Route path="/products" exact>
             <Products></Products>
+          </Route>
+          <Route path="/products/:id" exact>
+            {/* Chi tiết sản phẩm */}
+            <ProductDetail></ProductDetail>
           </Route>
           <Route path="/user">
             <User></User>
