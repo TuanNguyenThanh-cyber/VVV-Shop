@@ -6,18 +6,11 @@ import { blogAction } from "../../redux/actions/blogAction";
 import { Loading } from "../Loading";
 import { newsdetailAction } from "../../redux/actions/newsDetailAction";
 
-
 export default function Newsdetail() {
   const { datanewsdetail, isLoading, error } = useSelector(
     (state) => state.newsDetailReducer
   );
-<<<<<<< HEAD
 
-  console.log("datanewsdetail", datanewsdetail);
-
-=======
-  // console.log(datanewsdetail);
->>>>>>> dc39ba77d17168dc231d05680d56ac5a2b390e90
   const { datablog, isLoadingg, err } = useSelector(
     (state) => state.blogReducer
   );
@@ -25,12 +18,12 @@ export default function Newsdetail() {
   if (isLoading) {
     return <Loading></Loading>;
   }
-    
+
   return (
     <new className="newsdetail">
       <div className="breadcrumb">
-          <div className="container">
-            <Link to="/" className="infobreadcrumb">
+        <div className="container">
+          <Link to="/" className="infobreadcrumb">
             Trang chủ
           </Link>
           <span> / </span>
@@ -38,19 +31,9 @@ export default function Newsdetail() {
             Tin tức
           </Link>
           <span> / </span>
-<<<<<<< HEAD
-          <Link className="infobreadcrumb active">{datanewsdetail.name}</Link>
-=======
-          <Link to="#" className="infobreadcrumb active">
-            {datanewsdetail.name}
-          </Link>
-          </div>
-          
->>>>>>> dc39ba77d17168dc231d05680d56ac5a2b390e90
         </div>
+      </div>
       <div className="container">
-        
-
         <div className="newsimg">
           <img
             className="image"
