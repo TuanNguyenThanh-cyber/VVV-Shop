@@ -3,24 +3,34 @@ import { Link, Redirect } from "react-router-dom";
 import "./Newsdetail.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { blogAction } from "../../redux/actions/blogAction";
+import { Loading } from "../Loading";
 import { newsdetailAction } from "../../redux/actions/newsDetailAction";
+
 
 export default function Newsdetail() {
   const { datanewsdetail, isLoading, error } = useSelector(
     (state) => state.newsDetailReducer
   );
+<<<<<<< HEAD
 
   console.log("datanewsdetail", datanewsdetail);
 
+=======
+  // console.log(datanewsdetail);
+>>>>>>> dc39ba77d17168dc231d05680d56ac5a2b390e90
   const { datablog, isLoadingg, err } = useSelector(
     (state) => state.blogReducer
   );
-
+  console.log(datanewsdetail);
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+    
   return (
     <new className="newsdetail">
-      <div className="container">
-        <div className="breadcrumb">
-          <Link to="/" className="infobreadcrumb">
+      <div className="breadcrumb">
+          <div className="container">
+            <Link to="/" className="infobreadcrumb">
             Trang chủ
           </Link>
           <span> / </span>
@@ -28,8 +38,18 @@ export default function Newsdetail() {
             Tin tức
           </Link>
           <span> / </span>
+<<<<<<< HEAD
           <Link className="infobreadcrumb active">{datanewsdetail.name}</Link>
+=======
+          <Link to="#" className="infobreadcrumb active">
+            {datanewsdetail.name}
+          </Link>
+          </div>
+          
+>>>>>>> dc39ba77d17168dc231d05680d56ac5a2b390e90
         </div>
+      <div className="container">
+        
 
         <div className="newsimg">
           <img
@@ -41,7 +61,7 @@ export default function Newsdetail() {
         <div className="row newsbody">
           <div className="col-8 newsinfo">
             <h3 className="newstopic">{datanewsdetail.name}</h3>
-            <div className="row authinfo">
+            <div className="authinfo">
               <div className="authimage">
                 <img
                   className="authimg"
@@ -63,7 +83,7 @@ export default function Newsdetail() {
               datablog.map((item) => (
                 <>
                   <div className="row">
-                    <div className="col-4">
+                    <div className="col-4 imgbox">
                       <img
                         className="newsimages"
                         src="#"
@@ -71,14 +91,13 @@ export default function Newsdetail() {
                       ></img>
                     </div>
                     <div className="col-8 newsinfo">
-                      <a href="#" className="font-weight-bold">
+                      <a href="#" className="font-weight-bold newsname">
                         {item.name}
                       </a>
                       <p className="author">
                         <img className="authimg" src={item.author.avatar}></img>
-                        {item.author.name}
+                        {item.createdAt}
                       </p>
-                      <p className="review">{item.html}</p>
                     </div>
                   </div>
                   <hr></hr>
@@ -88,7 +107,7 @@ export default function Newsdetail() {
             <div className="row">
               <div className="col">
                 <div className="morebtn">
-                  <button>Xem thêm</button>
+                  <button className="btn">Xem thêm</button>
                 </div>
               </div>
             </div>

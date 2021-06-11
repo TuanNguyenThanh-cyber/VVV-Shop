@@ -5,7 +5,7 @@ export function productsAction (value) {
     return async (dispatch) => {
         dispatch({type: PRODUCTS_REQUEST});
         try {
-            const {data} = await productsAPI(value);
+            const {data} = await productsAPI.paginateProducts(value);
             dispatch({type: PRODUCTS_SUCCESS, payload: {data}});
         } catch (error) {
             console.log(error);

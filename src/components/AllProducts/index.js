@@ -59,8 +59,8 @@ export default function AllProducts() {
               <div className="col-3" key={item.id}>
                 <div className="card mb-3">
                   <div className="row no-gutters">
-                    <div className="col-12 my-fix">
-                      <img src={item.images} />
+                    <div className="col-12 my-fix keep-ratio">
+                      <img src={item.images[0]} />
                     </div>
                     <div className="col-12">
                       <div className="card-body">

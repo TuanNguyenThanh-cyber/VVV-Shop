@@ -10,7 +10,7 @@ import resetPasswordReducer from "./resetPasswordReducer";
 import newsDetailReducer from "./newsDetailReducer";
 import updateInfoUserReducer from "./updateInfoUserReducer";
 import productDetailReducer from "./productDetailReducer";
-import loveReducer from "./loveReducer";
+import allProductsReducer from "./allProductsReducer";
 
 const rootReducer = combineReducers({
   // Nơi khai báo các reducer con
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   newsDetailReducer,
   updateInfoUserReducer,
   productDetailReducer,
-  loveReducer,
+  allProductsReducer,
 });
 
 export default rootReducer;

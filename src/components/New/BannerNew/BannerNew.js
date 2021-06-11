@@ -26,8 +26,8 @@ export default function BannerNew() {
   }
   return (
     <div className="BannerNew">
-      <div className="container">
-        <div className="breadcrumb">
+      <div className="breadcrumb">
+        <div className="container">
           <Link to="/" className="infobreadcrumb">
             Trang chủ
           </Link>
@@ -36,32 +36,37 @@ export default function BannerNew() {
             Tin tức
           </Link>
         </div>
+      </div>
+      <div className="container">
         <div className="Bannerimg">
           <img
-            src="/images/vvvshop.jpg"
+            src="/images/banner-0.jpg"
             alt="introLogo"
             className="imgabout"
           ></img>
         </div>
 
         <div className="row">
-          <div className="col bannerleft">
-            <img src="/images/slider1.png" className="Bannermini"></img>
+          <div className="col bannermini">
+            <img src="/images/banner-01.png" className="imgmini"></img>
           </div>
-          <div className="col bannerright">
-            <img src="/images/slider1.png" className="Bannermini"></img>
+          <div className="col bannermini">
+            <img src="/images/banner-02.jpg" className="imgmini"></img>
           </div>
         </div>
 
         <hr></hr>
-
+        
         <div className="row">
           <div className="col-8">
+            <div className="row bordertitle">
+              <span className="titlepopular">MỚI CẬP NHẬT</span>
+            </div>
             {datablog &&
               datablog.map((item) => (
                 <>
                   <div className="row">
-                    <div className="col-4">
+                    <div className="col-4 imgbox">
                       <img
                         className="newsimages"
                         src="/images/slider1.png"
@@ -71,7 +76,7 @@ export default function BannerNew() {
                     <div className="col-8 newsinfo">
                       <Link
                         to={"/news/" + item.slug}
-                        className="font-weight-bold"
+                        className="font-weight-bold newsname"
                         onClick={() => handleNewsDetail(item._id)}
                       >
                         {item.name}
@@ -90,7 +95,7 @@ export default function BannerNew() {
                 </>
               ))}
             <div className="morebtn">
-              <button>Xem thêm</button>
+              <button className="btn">Xem thêm</button>
             </div>
           </div>
           <div className="col-4">
@@ -100,16 +105,16 @@ export default function BannerNew() {
             {datablog &&
               datablog.map((item) => (
                 <>
-                  <div className="row">
-                    <div className="col-4">
+                  <div className="row news">
+                    <div className="col-6 imgbox">
                       <img
                         className="newsimages"
                         src="/images/slider1.png"
                         alt="news_image"
                       ></img>
                     </div>
-                    <div className="col-8 newsinfo">
-                      <a href="#" className="font-weight-bold">
+                    <div className="col-6 newsinfo">
+                      <a href="#" className="font-weight-bold newsnamepopular">
                         {item.name}
                       </a>
                       <p className="author">
@@ -117,9 +122,8 @@ export default function BannerNew() {
                           className="authorimg"
                           src={item.author.avatar}
                         ></img>
-                        {item.author.name}
+                        {item.createdAt}
                       </p>
-                      <p className="review">{item.html}</p>
                     </div>
                   </div>
                   <hr></hr>
@@ -129,7 +133,7 @@ export default function BannerNew() {
             <div className="row">
               <div className="col">
                 <div className="morebtn">
-                  <button>Xem thêm</button>
+                  <button className="btn">Xem thêm</button>
                 </div>
               </div>
             </div>

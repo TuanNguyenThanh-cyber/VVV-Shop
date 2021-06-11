@@ -14,50 +14,57 @@ import "./ProDetail.scss";
 
 export default function ProDetail() {
   const dispatch = useDispatch();
-  let arrayLoveProduct = [];
-  const [isLove, setIsLove] = useState(false);
-
-  const { id } = useParams();
-
+  const { idProduct } = useParams();
   useEffect(() => {
-    dispatch(productDetailAction(id));
+    dispatch(productDetailAction(idProduct));
   }, []);
-
-  useEffect(() => {
-    if (isLove) {
-      arrayLoveProduct.push(dataproductdetail);
-      const action = {
-        type: "LOVE_PRODUCT",
-        payload: { data: arrayLoveProduct },
-      };
-      dispatch(action);
-      // localStorage.setItem("productLove", JSON.stringify(arrayLoveProduct));
-      console.log("Love");
-      return arrayLoveProduct;
-    } else {
-      arrayLoveProduct.filter((item) => item._id !== dataproductdetail._id);
-      const action = {
-        type: "NOTLOVE_PRODUCT",
-        payload: { data: arrayLoveProduct },
-      };
-      dispatch(action);
-      // localStorage.setItem("productLove", JSON.stringify(arrayLoveProduct));
-      console.log("Not love");
-      return arrayLoveProduct;
-    }
-  }, [isLove]);
 
   const { dataproductdetail, isLoading, error } = useSelector(
     (state) => state.productDetailReducer
   );
+  console.log(dataproductdetail);
+
+  // Wish List
+
+  const wishList = localStorage.getItem("wishList")
+    ? JSON.parse(localStorage.getItem("wishList"))
+    : new Object();
+
+  const [isInWishList, setIsInWishList] = useState(
+    wishList.hasOwnProperty(idProduct)
+  );
+
+  const handleLoveProduct = () => {
+    setIsInWishList(!isInWishList);
+    if (!isInWishList) {
+      wishList[idProduct] = true;
+    } else {
+      delete wishList[idProduct];
+    }
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+  };
+
+  // OrderCart
+
+  const orderCart = localStorage.getItem("orderCart")
+    ? JSON.parse(localStorage.getItem("orderCart"))
+    : new Object();
+
+  const [isOrderCart, setIsOrderCart] = useState(
+    orderCart.hasOwnProperty(idProduct)
+  );
+
+  const handleOrderCart = () => {
+    setIsOrderCart(true);
+    if (!isOrderCart) {
+      orderCart[idProduct] = true;
+    }
+    localStorage.setItem("orderCart", JSON.stringify(orderCart));
+  };
 
   if (isLoading) {
     return <Loading></Loading>;
   }
-
-  const handleLoveProduct = async () => {
-    setIsLove(!isLove);
-  };
 
   return (
     <div className="prodetail">
@@ -177,7 +184,7 @@ export default function ProDetail() {
             <div className="row add">
               <div className="col-3 add-container">
                 <button className="btn btnLove" onClick={handleLoveProduct}>
-                  {isLove ? (
+                  {isInWishList ? (
                     <AiFillHeart className="iconLoveRed"></AiFillHeart>
                   ) : (
                     <AiOutlineHeart className="iconLoveWhite"></AiOutlineHeart>
@@ -186,7 +193,9 @@ export default function ProDetail() {
                 <span>Yêu thích</span>
               </div>
               <div className="col-9">
-                <button className="btn-add-cart">Thêm vào giỏ hàng</button>
+                <button className="btn-add-cart" onClick={handleOrderCart}>
+                  Thêm vào giỏ hàng
+                </button>
               </div>
             </div>
             <hr />
@@ -208,18 +217,18 @@ export default function ProDetail() {
           <hr />
         </div>
         <div className="no-gutters mb-5">
-            <h3> Đánh giá chi tiết</h3>
-            <br></br>
-            <span>{dataproductdetail && dataproductdetail.description}</span>
-          </div>
-          <h3>Bình luận sản phẩm</h3>
+          <h3> Đánh giá chi tiết</h3>
           <br></br>
-          <div
-            class="fb-comments"
-            data-href="http://localhost:3000/"
-            data-width=""
-            data-numposts="5"
-          ></div>
+          <span>{dataproductdetail && dataproductdetail.description}</span>
+        </div>
+        <h3>Đánh giá sản phẩm</h3>
+        <br></br>
+        <div
+          class="fb-comments"
+          data-href="http://localhost:3000/"
+          data-width=""
+          data-numposts="5"
+        ></div>
       </div>
     </div>
   );

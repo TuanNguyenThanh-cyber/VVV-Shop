@@ -12,6 +12,8 @@ const Products = lazy(() => import("../pages/Products"));
 const ProductDetail = lazy(() => import("../pages/ProductDetail"));
 const Categories = lazy(() => import("../pages/Categories"));
 const News = lazy(() => import("../pages/News"));
+const LoveProduct = lazy(() => import("../pages/LoveProduct"));
+const ShoppingCart = lazy(() => import("../pages/ShoppingCart"));
 const User = lazy(() => import("../pages/UserInfoPage"));
 const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
 const ResetPasswordPage = lazy(() => import("../pages/ResetPasswordPage"));
@@ -44,7 +46,7 @@ export default function Router() {
           <Route path="/products" exact>
             <Products></Products>
           </Route>
-          <Route path="/products/:id" exact>
+          <Route path="/products/:idProduct" exact>
             {/* Chi tiết sản phẩm */}
             <ProductDetail></ProductDetail>
           </Route>
@@ -56,6 +58,12 @@ export default function Router() {
           </Route>
           <Route path="/contact" exact>
             <Contact></Contact>
+          </Route>
+          <Route path="/myloveproduct" exact>
+            <LoveProduct></LoveProduct>
+          </Route>
+          <Route path="/myshoppingcart" exact>
+            <ShoppingCart></ShoppingCart>
           </Route>
           <Route path="/forgotPassword" exact>
             <ForgotPassword></ForgotPassword>

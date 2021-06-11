@@ -1,0 +1,181 @@
+.bg-breadcrumb {
+    background-color: #e9ecef !important;
+    a {
+      color: #027492;
+      font-weight: bold;
+    }
+  }
+  .container {
+    .box-all-sp {
+      background-color: #e5e5e5 !important;
+      border-radius: 5px;
+      .box-sp {
+        padding: 0.5rem;
+        margin: 1rem;
+        border-radius: 5px;
+        background-color: #ffffff;
+        img {
+          width: 10rem;
+        }
+        .second {
+          p {
+            padding-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #212529;
+            text-overflow: ellipsis;
+            font-weight: bold;
+            overflow: hidden;
+            margin: 0rem !important;
+          }
+          a {
+            color: #027492;
+            font-weight: bold;
+          }
+          .second-2 {
+            margin-top: 2rem;
+          }
+        }
+        .third {
+          text-align: center;
+          padding-top: 1rem;
+          .now-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+          }
+          .real-price {
+            text-decoration: line-through;
+            margin-bottom: 0rem;
+            border-right: 1px solid #212529;
+          }
+        }
+        .buttons_added {
+          opacity: 1;
+          display: inline-block;
+          display: -ms-inline-flexbox;
+          display: inline-flex;
+          white-space: nowrap;
+          vertical-align: top;
+        }
+        .is-form {
+          overflow: hidden;
+          position: relative;
+          background-color: #f9f9f9;
+          height: 2.2rem;
+          width: 1.9rem;
+          padding: 0;
+          text-shadow: 1px 1px 1px #fff;
+          border: 1px solid #ddd;
+        }
+        .is-form:focus,
+        .input-text:focus {
+          outline: none;
+        }
+        .is-form.minus {
+          border-radius: 4px 0 0 4px;
+        }
+        .is-form.plus {
+          border-radius: 0 4px 4px 0;
+        }
+        .input-qty {
+          background-color: #fff;
+          height: 2.2rem;
+          width: 2.2rem;
+          text-align: center;
+          font-size: 20px;
+          display: inline-block;
+          vertical-align: top;
+          margin: 0;
+          border-top: 1px solid #ddd;
+          border-bottom: 1px solid #ddd;
+          border-left: 0;
+          border-right: 0;
+          padding: 0;
+        }
+        .input-qty::-webkit-outer-spin-button,
+        .input-qty::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
+    .info {
+      .box-info {
+        margin: 0rem 0.5rem 1rem;
+        border: 2px solid #e5e5e5;
+        border-radius: 5px;
+        .title-info{
+          color: #000000;
+          font-size: 1rem;
+          font-weight: bold;
+          margin-top: 0.5rem;
+          border-bottom: 2px solid #e5e5e5;;
+        }
+        p{
+          margin-bottom: 0.5rem !important;
+        }
+        .title-info a{
+          color: #027492;
+        }
+        .name-sdt{
+          font-size: 1.2rem;
+          font-weight: bold;
+          padding: 0rem !important;
+        }
+        .detail-adress{
+          font-size: 0.9rem;
+        }
+        .sale-blank{
+          margin: 0.5rem 0rem;
+        }
+        .price{
+          text-align: center;
+        }
+        .price-red{
+            color: #D90429 !important;
+            text-align: center;
+          }
+        .sum{
+          color: #000000;
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+      }
+      .btn-apply{
+        background-color: #027492;
+        color: white;
+        text-align: center;
+        padding: 0.2rem 1rem;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: 2px solid #027492;
+        transition: all 0.5s;
+      }
+      .btn-apply:hover{
+        background-color: #024455;
+        box-shadow: 2px 2px 1px 1px #c4c4c4;
+      }
+      .btn-order {
+        margin: 0rem 0.5rem;
+        background-color: #027492;
+        color: white;
+        padding: 0.5rem 5rem;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: 2px solid #027492;
+        transition: all 0.5s;
+      }
+      .btn-order:hover {
+        background-color:#024455;
+        box-shadow: 2px 2px 1px 1px #c4c4c4;
+      }
+    }
+  }
+  

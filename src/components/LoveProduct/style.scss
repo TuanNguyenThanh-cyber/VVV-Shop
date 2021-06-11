@@ -1,0 +1,82 @@
+.bg-breadcrumb {
+    background-color: #e9ecef !important;
+    a {
+        color: #027492;
+        font-weight: bold;
+    }
+}
+.container {
+    .box-all-sp {
+        background-color: #e5e5e5 !important;
+        border-radius: 5px;
+        .box-sp {
+            padding: 0.5rem;
+            margin: 1rem;
+            border-radius: 5px;
+            background-color: #ffffff;
+            img {
+                width: 10rem;
+            }
+            .second {
+                p {
+                    padding-top: 1rem;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    color: #212529;
+                    width: 340px;
+                    height: 80px;
+                    text-overflow: ellipsis;
+                    font-weight: bold;
+                    overflow: hidden;
+                    margin: 0rem !important;
+                }
+                a {
+                    color: #027492;
+                    font-weight: bold;
+                }
+                .second-2 {
+                    margin-top: 2rem;
+                }
+            }
+            .third {
+                text-align: center;
+                padding-top: 1rem;
+                .now-price {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    margin-bottom: 0.5rem;
+                }
+                .real-price {
+                    text-decoration: line-through;
+                    margin-bottom: 0rem;
+                    border-right: 1px solid #212529;
+                    text-align: right;
+                    padding-right: 1rem;
+                }
+                .discount {
+                    margin-bottom: 0rem;
+                    text-align: left;
+                    padding-left: 0.5rem;
+                }
+            }
+            .btn-add-cart {
+                margin: 0rem 0.5rem;
+                background-color: #027492;
+                color: white;
+                padding: 0.8rem 3rem;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                font-weight: bold;
+                border-radius: 5px;
+                border: 2px solid #027492;
+                transition: all 0.5s;
+            }
+            .btn-add-cart:hover {
+                background-color: #024455;
+                box-shadow: 2px 2px 1px 1px #c4c4c4;
+            }
+        }
+    }
+}
