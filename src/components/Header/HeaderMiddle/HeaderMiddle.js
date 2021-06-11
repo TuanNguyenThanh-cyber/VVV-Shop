@@ -11,14 +11,22 @@ import { FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import "./HeaderMiddle.scss";
 import { Link, Redirect } from "react-router-dom";
 
-
 export default function HeaderMiddle(props) {
-  let loveProduct = JSON.parse(localStorage.getItem("wishList"));
-  let arrayIdLoveProduct = Object.keys(loveProduct);
+  // // Love Product
+  // let loveProduct = JSON.parse(localStorage.getItem("wishList"));
+  // let arrayIdLoveProduct = Object.keys(loveProduct);
+
+  // // Order Product
+  // let orderCart = JSON.parse(localStorage.getItem("orderCart"));
+  // let arrayIdOrderCart = Object.keys(orderCart);
+
+  // const [amountLove, setamountLove] = useState(arrayIdLoveProduct.length);
+  // const [amountOrderCart, setamountOrderCart] = useState(
+  //   arrayIdOrderCart.length
+  // );
 
   let { isScroll } = props;
   const [result, setResult] = useState(false);
-  const [amountLove, setamountLove] = useState(arrayIdLoveProduct.length);
 
   const abortController = new AbortController();
   const signal = abortController.signal;
@@ -62,12 +70,14 @@ export default function HeaderMiddle(props) {
           <Link className="HeaderMiddle_icon col-3" to="/myloveproduct">
             <button className="HeaderMiddle__btn-heart">
               <FaRegHeart className="HeaderMiddle_iconHeart"></FaRegHeart>
-              <span className="HeaderMiddle_amountHeart">{amountLove}</span>
+              <span className="HeaderMiddle_amountHeart">1</span>
             </button>
             <Link className="HeaderMiddle_shoppingcart" to="/myshoppingcart">
               <div className="shoppingcart_container">
                 <FaShoppingCart className="HeaderMiddle_iconShoppingCart"></FaShoppingCart>
-                <span className="HeaderMiddle_amountShoppingCart">2</span>
+                <span className="HeaderMiddle_amountShoppingCart">
+                  2
+                </span>
               </div>
               <span className="HeaderMiddle_shoppingcart-name">Giỏ hàng</span>
             </Link>

@@ -1,25 +1,37 @@
 import React, { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
 import { allProductsAction } from "../../redux/actions/allProductsAction";
+import { getInfoUserAction } from "../../redux/actions/getInfoUserAction";
 import { formatMoneyVND } from "../../utils/formatMoneyVND";
 
 export default function ShoppingCart() {
   const dispatch = useDispatch();
   const { dataAllProducts } = useSelector((state) => state.allProductsReducer);
+  const { dataUser } = useSelector((state) => state.getInfoUserReducer);
+
+  // Get info user
+  let objInfoUser = {};
+  const token = localStorage.getItem("auth_token");
+  var decoded = jwt_decode(token);
+  objInfoUser = { ...decoded };
+
+  // Order Cart
   let orderCart = JSON.parse(localStorage.getItem("orderCart"));
   let arrayIdOrderCart = Object.keys(orderCart);
   let arrayDataOrderCart = [];
 
   useEffect(() => {
     dispatch(allProductsAction());
+    dispatch(getInfoUserAction(decoded._id));
   }, []);
 
   if (dataAllProducts) {
     dataAllProducts.map((item) => {
       arrayIdOrderCart.map((id) => {
         if (item._id === id) {
-          arrayDataOrderCart.push({...item, amount: 1});
+          arrayDataOrderCart.push({ ...item, amount: 1 });
         }
       });
     });
@@ -27,7 +39,13 @@ export default function ShoppingCart() {
 
   console.log("arrayDataOrderCart", arrayDataOrderCart);
 
-  const handleAmountOrder = (item, status) => {};
+  const handleAmountOrder = (item, status) => {
+    if (status) {
+      item.amount = item.amount + 1;
+    } else {
+      item.amount = item.amount - 1;
+    }
+  };
 
   return (
     <div>
@@ -53,7 +71,7 @@ export default function ShoppingCart() {
                   <p>{item.name}</p>
                   <div className="row">
                     <div className="col-3">
-                      <button className="btn btn-danger">Xóa</button>
+                      <button className="btn btn-danger mt-3">Xóa</button>
                     </div>
                   </div>
                 </div>
@@ -77,7 +95,8 @@ export default function ShoppingCart() {
                         <button
                           className="minus is-form"
                           type="button"
-                          onClick={handleAmountOrder(item, false)}
+                          onClick={() => handleAmountOrder(item, false)}
+                          disabled={item.amount === 0}
                         >
                           -
                         </button>
@@ -85,7 +104,7 @@ export default function ShoppingCart() {
                         <button
                           className="plus is-form"
                           type="button"
-                          onClick={handleAmountOrder(item, true)}
+                          onClick={() => handleAmountOrder(item, true)}
                         >
                           +
                         </button>
@@ -109,17 +128,16 @@ export default function ShoppingCart() {
                 </div>
                 <div className="row name-sdt no-gutters">
                   <div className="col-7">
-                    <p>Huỳnh Văn A</p>
+                    <p>{dataUser && dataUser.name}</p>
                   </div>
                   <div className="col-5">
-                    <p>0375577127</p>
+                    <p>{dataUser && dataUser.phone}</p>
                   </div>
                 </div>
                 <div className="row no-gutters detail-adress">
                   <div className="col">
                     <p>
-                      KTX khu A, ĐHQG, Khu Phố 6, Phường Linh Trung, Quận Thủ
-                      Đức, Hồ Chí Minh
+                      {dataUser && dataUser.address}
                     </p>
                   </div>
                 </div>
