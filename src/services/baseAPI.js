@@ -7,6 +7,13 @@ const baseAPI = axios.create({
 
 baseAPI.interceptors.request.use(
   (config) => {
+    const token = window.localStorage.getItem("auth_token");
+
+    console.log("baseAPI",token);
+
+    if(token){
+      config.headers.auth_token = token;
+    }
     // Xử lý trước khi request được gửi lên server
     // Thêm Authorization vào header
     // const userInfo = localStorage.getItem("userInfo");

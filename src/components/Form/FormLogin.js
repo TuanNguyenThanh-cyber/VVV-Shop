@@ -37,7 +37,7 @@ export default function FormLogin() {
     dispatch(login(value));
   };
 
-  if(localStorage.getItem("userLogin") !== null){
+  if(localStorage.getItem("auth_token") !== null){
     return (
       <Redirect to="/"></Redirect>
     )
@@ -92,7 +92,7 @@ export default function FormLogin() {
             </button>
           </div>
           <p style={{ textAlign: "center" }}>
-            <Link to="#">Quên mật khẩu </Link>
+            <Link to="/forgotPassword">Quên mật khẩu </Link>
             hoặc
             <Link to="/signup"> Đăng ký</Link>
           </p>

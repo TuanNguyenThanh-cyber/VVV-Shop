@@ -7,9 +7,16 @@ const Login = lazy(() => import("../pages/Login"));
 const Signup = lazy(() => import("../pages/Signup"));
 const About = lazy(() => import("../pages/About"));
 const Contact = lazy(() => import("../pages/Contact"));
+const Newsdetail = lazy(() => import("../pages/News_detail"));
 const Products = lazy(() => import("../pages/Products"));
+const ProductDetail = lazy(() => import("../pages/ProductDetail"));
 const Categories = lazy(() => import("../pages/Categories"));
 const News = lazy(() => import("../pages/News"));
+const LoveProduct = lazy(() => import("../pages/LoveProduct"));
+const ShoppingCart = lazy(() => import("../pages/ShoppingCart"));
+const User = lazy(() => import("../pages/UserInfoPage"));
+const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
+const ResetPasswordPage = lazy(() => import("../pages/ResetPasswordPage"));
 const PageNotFound = lazy(() => import("../pages/404"));
 
 export default function Router() {
@@ -23,6 +30,10 @@ export default function Router() {
           <Route path="/news" exact>
             <News></News>
           </Route>
+          <Route path="/news/:id" exact>
+            {/* Chi tiết tin tức */}
+            <Newsdetail></Newsdetail>
+          </Route>
           <Route path="/login" exact>
             <Login></Login>
           </Route>
@@ -35,16 +46,35 @@ export default function Router() {
           <Route path="/products" exact>
             <Products></Products>
           </Route>
-          <Route path="/categories/:lv1">
+          <Route path="/products/:idProduct" exact>
+            {/* Chi tiết sản phẩm */}
+            <ProductDetail></ProductDetail>
+          </Route>
+          <Route path="/user">
+            <User></User>
+          </Route>
+          <Route path="/categories/*">
             <Categories></Categories>
           </Route>
           <Route path="/contact" exact>
-             <Contact></Contact>
+            <Contact></Contact>
           </Route>
-          <Route path='/PageNotFound'>
+          <Route path="/myloveproduct" exact>
+            <LoveProduct></LoveProduct>
+          </Route>
+          <Route path="/myshoppingcart" exact>
+            <ShoppingCart></ShoppingCart>
+          </Route>
+          <Route path="/forgotPassword" exact>
+            <ForgotPassword></ForgotPassword>
+          </Route>
+          <Route path="/reset/:token">
+            <ResetPasswordPage></ResetPasswordPage>
+          </Route>
+          <Route path="/PageNotFound">
             <PageNotFound></PageNotFound>
           </Route>
-          <Redirect from='*' to='/PageNotFound' />
+          <Redirect from="*" to="/PageNotFound" />
         </Switch>
       </BrowserRouter>
     </Suspense>

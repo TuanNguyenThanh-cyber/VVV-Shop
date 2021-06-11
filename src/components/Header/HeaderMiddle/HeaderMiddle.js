@@ -9,10 +9,22 @@ import {
 } from "reactstrap";
 import { FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import "./HeaderMiddle.scss";
-import { Link } from "react-router-dom";
-
+import { Link, Redirect } from "react-router-dom";
 
 export default function HeaderMiddle(props) {
+  // // Love Product
+  // let loveProduct = JSON.parse(localStorage.getItem("wishList"));
+  // let arrayIdLoveProduct = Object.keys(loveProduct);
+
+  // // Order Product
+  // let orderCart = JSON.parse(localStorage.getItem("orderCart"));
+  // let arrayIdOrderCart = Object.keys(orderCart);
+
+  // const [amountLove, setamountLove] = useState(arrayIdLoveProduct.length);
+  // const [amountOrderCart, setamountOrderCart] = useState(
+  //   arrayIdOrderCart.length
+  // );
+
   let { isScroll } = props;
   const [result, setResult] = useState(false);
 
@@ -28,9 +40,9 @@ export default function HeaderMiddle(props) {
       }
     };
     window.addEventListener("scroll", handleScrollHeader);
-    return function cleanup(){
+    return function cleanup() {
       abortController.abort();
-    }
+    };
   }, [result]);
 
   return (
@@ -55,19 +67,21 @@ export default function HeaderMiddle(props) {
               </Button>
             </InputGroupAddon>
           </InputGroup>
-          <div className="HeaderMiddle_icon col-3">
+          <Link className="HeaderMiddle_icon col-3" to="/myloveproduct">
             <button className="HeaderMiddle__btn-heart">
               <FaRegHeart className="HeaderMiddle_iconHeart"></FaRegHeart>
-              <span className="HeaderMiddle_amountHeart">3</span>
+              <span className="HeaderMiddle_amountHeart">1</span>
             </button>
-            <a className="HeaderMiddle_shoppingcart">
+            <Link className="HeaderMiddle_shoppingcart" to="/myshoppingcart">
               <div className="shoppingcart_container">
                 <FaShoppingCart className="HeaderMiddle_iconShoppingCart"></FaShoppingCart>
-                <span className="HeaderMiddle_amountShoppingCart">2</span>
+                <span className="HeaderMiddle_amountShoppingCart">
+                  2
+                </span>
               </div>
               <span className="HeaderMiddle_shoppingcart-name">Giỏ hàng</span>
-            </a>
-          </div>
+            </Link>
+          </Link>
         </Navbar>
       </div>
     </div>

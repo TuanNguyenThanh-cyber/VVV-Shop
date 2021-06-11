@@ -6,11 +6,11 @@ import { RiLockPasswordFill, RiLockPasswordLine } from "react-icons/ri";
 import { Link, Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import "./Form.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../redux/actions/signupAction";
 import { Loading } from "../Loading";
+import "./Form.scss";
 
 // Regex VietNam phone number
 const phoneRegVn = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
@@ -25,7 +25,7 @@ const schema = yup.object().shape({
   phone: yup
     .string()
     .required("Phone can not empty")
-    .matches(phoneRegVn, "Email has wrong format"),
+    .matches(phoneRegVn, "Phone has wrong format"),
   address: yup.string().required("Address can not empty"),
   password: yup
     .string()
@@ -56,6 +56,7 @@ export default function FormSignup() {
       phone: value.phone,
       address: value.address,
       password: value.password,
+      avatar: "https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-3&_nc_sid=7206a8&_nc_ohc=kD8TgOu1pzYAX8JAzIl&_nc_ht=scontent.fsgn5-6.fna&oh=81482383c01711bdee6a54cf816d5d9c&oe=60E7F2F8"
     };
     console.log(dataUser);
     dispatch(signup(dataUser));
@@ -182,7 +183,7 @@ export default function FormSignup() {
             </button>
           </div>
           <p style={{ textAlign: "center" }}>
-            <Link>Quên mật khẩu </Link>
+            <Link to="/forgotPassword">Quên mật khẩu </Link>
             hoặc
             <Link to="/login"> Đăng nhập</Link>
           </p>

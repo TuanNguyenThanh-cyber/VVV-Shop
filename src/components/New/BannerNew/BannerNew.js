@@ -4,155 +4,144 @@ import { useDispatch, useSelector } from "react-redux";
 import "./BannerNew.scss";
 import { blogAction } from "../../../redux/actions/blogAction";
 import { Loading } from "../../Loading";
+import { newsdetailAction } from "../../../redux/actions/newsDetailAction";
 
 export default function BannerNew() {
-    const dispatch = useDispatch();
-    useEffect(() => {
-     dispatch(blogAction());
-    }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(blogAction());
+  }, []);
 
-    const { datablog, isLoading, error } = useSelector(
-     (state) => state.blogReducer
-    );
-    console.log(datablog);
+  const { datablog, isLoading, error } = useSelector(
+    (state) => state.blogReducer
+  );
+  console.log(datablog);
 
-    if (isLoading) {
-        return <Loading></Loading>;
-      }
-    return (
-        <div className="BannerNew">
-            <div className="container">
-                <div className="breadcrumb">
-                    <Link to="/" className="infobreadcrumb">Trang chủ</Link>
-                    <span> / </span>
-                    <Link to="/news" className="infobreadcrumb active">Tin tức</Link>
-                </div>
-                <div className="Bannerimg">  
-                        <img
-                            src="/images/vvvshop.jpg"
-                            alt="introLogo"
-                            className="imgabout"
-                        ></img>
-                </div>
+  const handleNewsDetail = (id) => {
+    dispatch(newsdetailAction(id));
+  };
 
-                <div className="row">
-
-                    <div className="col bannerleft">
-                        <img
-                        src="/images/slider1.png"
-                        className="Bannermini"
-                        ></img>
-                    </div>
-                    <div className="col bannerright">
-                        <img
-                        src="/images/slider1.png"
-                        className="Bannermini"
-                        ></img>
-                    </div>
-                </div>
-                
-                <hr></hr>
-
-                <div className="row">
-
-                    <div className="col">
-                        <div className="row">
-                            <div className="col newimages">
-                                <img src="/images/Category/chuot.png"></img>
-                            </div>
-                            <div className="col newinfo">
-                                <a href="#" className="font-weight-bold">Title</a>
-                                <p className="author">Author</p>
-                                <p className="review">review news</p>
-                            </div>
-                            
-                        </div>
-                        <hr></hr>
-                        <div className="row">
-                            <div className="col newimages">
-                                <img src="/images/Category/chuot.png"></img>
-                            </div>
-                            <div className="col newinfo">
-                                <a href="#" className="font-weight-bold">Title</a>
-                                <p className="author">Author</p>
-                                <p className="review">review news</p>
-                            </div>
-                        </div>
-                        <hr></hr>
-                        <div className="row">
-                            <div className="col newimages">
-                                <img src="/images/Category/chuot.png"></img>
-                            </div>
-                            <div className="col newinfo">
-                                <a href="#" className="font-weight-bold">Title</a>
-                                <p className="author">Author</p>
-                                <p className="review">review news</p>
-                            </div>
-                        </div>
-                        <hr></hr>
-                        <div className="morebtn">
-                            <button>Xem thêm</button>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="row"><span>BÀI VIẾT PHỔ BIẾN</span></div>
-                        <div className="row">
-                            <div className="col newimages">
-                                    <img src="/images/Category/chuot.png"></img>
-                                </div>
-                                <div className="col newinfo">
-                                    <a href="#" className="font-weight-bold">Title</a>
-                                    <p className="author">Author</p>
-                                    <p className="review">review news</p>
-                                </div>
-                        </div>
-                        <hr></hr>
-                        <div className="row">
-                            <div className="col newimages">
-                                    <img src="/images/Category/chuot.png"></img>
-                                </div>
-                                <div className="col newinfo">
-                                    <a href="#" className="font-weight-bold">Title</a>
-                                    <p className="author">Author</p>
-                                    <p className="review">review news</p>
-                                </div>
-                        </div>
-                        <hr></hr>
-                        <div className="row">
-                            <div className="col newimages">
-                                    <img src="/images/Category/chuot.png"></img>
-                                </div>
-                                <div className="col newinfo">
-                                    <a href="#" className="font-weight-bold">Title</a>
-                                    <p className="author">Author</p>
-                                    <p className="review">review news</p>
-                                </div>
-                        </div>
-                        <hr></hr>
-                        <div className="row">
-                            <div className="col newimages">
-                                    <img src="/images/Category/chuot.png"></img>
-                                </div>
-                                <div className="col newinfo">
-                                    <a href="#" className="font-weight-bold">Title</a>
-                                    <p className="author">Author</p>
-                                    <p className="review">review news</p>
-                                </div>
-                        </div>
-                        <hr></hr>
-                        <div className="row">
-                            <div className="col">
-                                <div className="morebtn">
-                                <button>Xem thêm</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="gap-md"></div>
-            </div>
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  return (
+    <div className="BannerNew">
+      <div className="breadcrumb">
+        <div className="container">
+          <Link to="/" className="infobreadcrumb">
+            Trang chủ
+          </Link>
+          <span> / </span>
+          <Link to="/news" className="infobreadcrumb active">
+            Tin tức
+          </Link>
         </div>
-    )
+      </div>
+      <div className="container">
+        <div className="Bannerimg">
+          <img
+            src="/images/banner-0.jpg"
+            alt="introLogo"
+            className="imgabout"
+          ></img>
+        </div>
+
+        <div className="row">
+          <div className="col bannermini">
+            <img src="/images/banner-01.png" className="imgmini"></img>
+          </div>
+          <div className="col bannermini">
+            <img src="/images/banner-02.jpg" className="imgmini"></img>
+          </div>
+        </div>
+
+        <hr></hr>
+        
+        <div className="row">
+          <div className="col-8">
+            <div className="row bordertitle">
+              <span className="titlepopular">MỚI CẬP NHẬT</span>
+            </div>
+            {datablog &&
+              datablog.map((item) => (
+                <>
+                  <div className="row">
+                    <div className="col-4 imgbox">
+                      <img
+                        className="newsimages"
+                        src="/images/slider1.png"
+                        alt="news_image"
+                      ></img>
+                    </div>
+                    <div className="col-8 newsinfo">
+                      <Link
+                        to={"/news/" + item.slug}
+                        className="font-weight-bold newsname"
+                        onClick={() => handleNewsDetail(item._id)}
+                      >
+                        {item.name}
+                      </Link>
+                      <p className="author">
+                        <img
+                          className="authorimg"
+                          src={item.author.avatar}
+                        ></img>
+                        {item.author.name}
+                      </p>
+                      <p className="review">{item.html}</p>
+                    </div>
+                  </div>
+                  <hr></hr>
+                </>
+              ))}
+            <div className="morebtn">
+              <button className="btn">Xem thêm</button>
+            </div>
+          </div>
+          <div className="col-4">
+            <div className="row bordertitle">
+              <span className="titlepopular">BÀI VIẾT PHỔ BIẾN</span>
+            </div>
+            {datablog &&
+              datablog.map((item) => (
+                <>
+                  <div className="row news">
+                    <div className="col-6 imgbox">
+                      <img
+                        className="newsimages"
+                        src="/images/slider1.png"
+                        alt="news_image"
+                      ></img>
+                    </div>
+                    <div className="col-6 newsinfo">
+                      <a href="#" className="font-weight-bold newsnamepopular">
+                        {item.name}
+                      </a>
+                      <p className="author">
+                        <img
+                          className="authorimg"
+                          src={item.author.avatar}
+                        ></img>
+                        {item.createdAt}
+                      </p>
+                    </div>
+                  </div>
+                  <hr></hr>
+                </>
+              ))}
+
+            <div className="row">
+              <div className="col">
+                <div className="morebtn">
+                  <button className="btn">Xem thêm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="gap-md"></div>
+      </div>
+    </div>
+  );
 }
