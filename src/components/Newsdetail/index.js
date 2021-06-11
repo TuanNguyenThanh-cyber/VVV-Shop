@@ -3,7 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 import "./Newsdetail.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { blogAction } from "../../redux/actions/blogAction";
+import { Loading } from "../Loading";
 import { newsdetailAction } from "../../redux/actions/newsDetailAction";
+
 
 export default function Newsdetail() {
   // const dispatch = useDispatch();
@@ -18,7 +20,11 @@ export default function Newsdetail() {
   const { datablog, isLoadingg, err } = useSelector(
     (state) => state.blogReducer
   );
-
+  console.log(datanewsdetail);
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+    
   return (
     <new className="newsdetail">
       <div className="breadcrumb">
