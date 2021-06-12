@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./BannerNew.scss";
+import ReactHtmlParser from "react-html-parser";
 import { blogAction } from "../../../redux/actions/blogAction";
 import { Loading } from "../../Loading";
 import { newsdetailAction } from "../../../redux/actions/newsDetailAction";
@@ -88,7 +89,7 @@ export default function BannerNew() {
                         ></img>
                         {item.author.name}
                       </p>
-                      <p className="review">{item.html}</p>
+                      <p className="review">{ReactHtmlParser(item.html)}</p>
                     </div>
                   </div>
                   <hr></hr>
