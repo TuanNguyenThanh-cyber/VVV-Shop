@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blogAction } from "../../redux/actions/blogAction";
 import { Loading } from "../Loading";
 import { newsdetailAction } from "../../redux/actions/newsDetailAction";
+import ReactHtmlParser from "react-html-parser";
 
 export default function Newsdetail() {
   const { datanewsdetail, isLoading, error } = useSelector(
@@ -55,7 +56,7 @@ export default function Newsdetail() {
               <div className="timecreate">{datanewsdetail.createdAt}</div>
             </div>
 
-            <div className="info">{datanewsdetail.html}</div>
+            <div className="info">{ReactHtmlParser(datanewsdetail.html)}</div>
           </div>
 
           <div className="col-4 newspopular">
@@ -69,12 +70,12 @@ export default function Newsdetail() {
                     <div className="col-4 imgbox">
                       <img
                         className="newsimages"
-                        src="#"
+                        src="/images/slider1.png"
                         alt="news_image"
                       ></img>
                     </div>
                     <div className="col-8 newsinfo">
-                      <a href="#" className="font-weight-bold newsname">
+                      <a href={"/news/" + item.slug} className="font-weight-bold newsname">
                         {item.name}
                       </a>
                       <p className="author">
