@@ -39,14 +39,14 @@ export default function IntroContact() {
                                 </a>                               
                             </li>
                             <li className="list-item">
-                                <a className="flex-container" href="#">
+                                <a className="flex-container" href="tel:0123456789">
                                     <FiPhoneCall className="firsticon"></FiPhoneCall>
                                     <div className="text">Call: 0123456789</div>
                                     <IoMdArrowDropright className="lasticon"></IoMdArrowDropright>
                                 </a>                               
                             </li>
                             <li className="list-item">
-                                <a className="flex-container" href="#">
+                                <a className="flex-container" href="mailto:vvvshop@gmail.com">
                                     <GrMail className="firsticon"></GrMail>
                                     <div className="text">Liên hệ qua Email</div>
                                     <IoMdArrowDropright className="lasticon"></IoMdArrowDropright>
