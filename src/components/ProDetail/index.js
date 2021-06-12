@@ -57,7 +57,10 @@ export default function ProDetail() {
   const handleOrderCart = () => {
     setIsOrderCart(true);
     if (!isOrderCart) {
-      orderCart[idProduct] = true;
+      orderCart[idProduct] = 1;
+    }
+    else{
+      orderCart[idProduct]++;
     }
     localStorage.setItem("orderCart", JSON.stringify(orderCart));
   };

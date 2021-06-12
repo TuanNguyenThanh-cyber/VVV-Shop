@@ -5,6 +5,7 @@ import "./style.scss";
 import { allProductsAction } from "../../redux/actions/allProductsAction";
 import { getInfoUserAction } from "../../redux/actions/getInfoUserAction";
 import { formatMoneyVND } from "../../utils/formatMoneyVND";
+import axios from "axios";
 
 export default function ShoppingCart() {
   const dispatch = useDispatch();
@@ -16,11 +17,12 @@ export default function ShoppingCart() {
   const token = localStorage.getItem("auth_token");
   var decoded = jwt_decode(token);
   objInfoUser = { ...decoded };
+  let total = 0;
 
   // Order Cart
-  let orderCart = JSON.parse(localStorage.getItem("orderCart"));
+  let orderCart = localStorage.getItem("orderCart") ? JSON.parse(localStorage.getItem("orderCart")) : [];
   let arrayIdOrderCart = Object.keys(orderCart);
-  let arrayDataOrderCart = [];
+  let [arrayDataOrderCart, setArrayDataOrderCart] = useState([]);
 
   useEffect(() => {
     dispatch(allProductsAction());
@@ -28,24 +30,78 @@ export default function ShoppingCart() {
   }, []);
 
   if (dataAllProducts) {
-    dataAllProducts.map((item) => {
-      arrayIdOrderCart.map((id) => {
-        if (item._id === id) {
-          arrayDataOrderCart.push({ ...item, amount: 1 });
-        }
-      });
+    dataAllProducts.filter((item) => {
+      if (orderCart.hasOwnProperty(item._id)) {
+        arrayDataOrderCart.push({ ...item, amount: orderCart[item._id] });
+        total += item.originalPrice * orderCart[item._id];
+      }
+      return orderCart.hasOwnProperty(item._id);
     });
   }
 
   console.log("arrayDataOrderCart", arrayDataOrderCart);
 
-  const handleAmountOrder = (item, status) => {
+  const handleAmountOrder = (item, status, index) => {
     if (status) {
-      item.amount = item.amount + 1;
+      orderCart[item._id]++;
+
+    } else if (item.amount <= 1) {
+      delete orderCart[item._id];
     } else {
-      item.amount = item.amount - 1;
+      orderCart[item._id]--;
     }
+    localStorage.setItem("orderCart", JSON.stringify(orderCart));
+    window.location.reload();
   };
+
+  const checkout = async () => {
+    if (!arrayIdOrderCart.length) {
+      alert("Bạn chưa có sản phẩm nào trong giỏ hàng");
+      return;
+    }
+    // details
+    let details = [];
+    arrayIdOrderCart.forEach((id) => {
+      const detail = {
+        product: id,
+        quantity: orderCart[id],
+      }
+      details.push(detail);
+    });
+
+    // deliver
+    const deliver = {
+      phone: dataUser.phone,
+      address: dataUser.address,
+      note: "",
+    }
+
+    // payment 
+    const payment = {
+      transaction_id: "",
+      method: "cash",
+    }
+
+    const body = {
+      details,
+      deliver,
+      payment,
+
+    }
+
+    try {
+      const result = await axios.post("http://127.0.0.1:8080/api/orders", body, {
+        headers: {
+          auth_token: token,
+        }
+      })
+      alert("Đã đặt hàng thành công");
+      localStorage.removeItem("orderCart");
+      window.location = "/";
+    } catch (error) {
+      alert("Đặt hàng chưa thành công, vui lòng thử lại sau");
+    }
+  }
 
   return (
     <div>
@@ -59,10 +115,10 @@ export default function ShoppingCart() {
           </ol>
         </div>
       </div>
-      <div className="container">
+      <div className="container mb-5">
         <div className="row no-gutters">
           <div className="col-8 box-all-sp">
-            {arrayDataOrderCart.map((item) => (
+            {arrayDataOrderCart.length ? arrayDataOrderCart.map((item, index) => (
               <div className="row no-gutters box-sp">
                 <div className="col-3">
                   <img src={item.images[0]} alt />
@@ -95,7 +151,7 @@ export default function ShoppingCart() {
                         <button
                           className="minus is-form"
                           type="button"
-                          onClick={() => handleAmountOrder(item, false)}
+                          onClick={() => handleAmountOrder(item, false, index)}
                           disabled={item.amount === 0}
                         >
                           -
@@ -104,7 +160,7 @@ export default function ShoppingCart() {
                         <button
                           className="plus is-form"
                           type="button"
-                          onClick={() => handleAmountOrder(item, true)}
+                          onClick={() => handleAmountOrder(item, true, index)}
                         >
                           +
                         </button>
@@ -113,7 +169,7 @@ export default function ShoppingCart() {
                   </div>
                 </div>
               </div>
-            ))}
+            )) : (<p> Chưa có sản phẩm </p>)}
           </div>
           <div className="col-4 info">
             <div className="row box-info">
@@ -159,7 +215,7 @@ export default function ShoppingCart() {
                     <p>Tạm tính</p>
                   </div>
                   <div className="col-7">
-                    <p className="price">44.444.000đ</p>
+                    <p className="price">{formatMoneyVND(total)}</p>
                   </div>
                 </div>
                 <div className="row no-gutters sum">
@@ -167,14 +223,14 @@ export default function ShoppingCart() {
                     <p>Thành tiền</p>
                   </div>
                   <div className="col-7">
-                    <p className="price-red">44.444.000đ</p>
+                    <p className="price-red">{formatMoneyVND(total)}</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="row no-gutters">
               <div className="col">
-                <a href className="btn-order">
+                <a href onClick={() => checkout()} className="btn-order">
                   Tiến hành đặt hàng
                 </a>
               </div>
