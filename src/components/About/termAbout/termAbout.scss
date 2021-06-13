@@ -1,4 +1,5 @@
 .termAbout{
+    padding: 1.5rem 0rem;
     .container{
         .card{
             margin: 0 15px;
@@ -12,6 +13,7 @@
             .termAbout_info{
                 .terms_picture{
                     width: 1000px;
+                    width: 100%;
                 }
                 .termAbout_info_up{
                     justify-content: center;
@@ -20,4 +22,152 @@
             }
         }
     }
+}
+
+$res_575 : "only screen and (max-width: 575px)";
+$res_576 : "only screen and (min-width: 576px) and (max-width:767px)";
+$res_768 : "only screen and (min-width: 768px) and (max-width:991px)";
+$res_992 : "only screen and (min-width: 992px) and (max-width:1999px)";
+$res_1200 : "only screen and (min-width: 1200px)";
+
+@mixin responsive_575() {
+    @media #{$res_575} {
+        @content;
+    }
+}
+@mixin responsive_576() {
+    @media #{$res_576} {
+        @content;
+    }
+}
+@mixin responsive_768() {
+    @media #{$res_768} {
+        @content;
+    }
+}
+@mixin responsive_992() {
+    @media #{$res_992} {
+        @content;
+    }
+}
+@mixin responsive_1200() {
+    @media #{$res_1200} {
+        @content;
+    }
+}
+
+/*edit*/
+@include responsive_575{
+ .termAbout{
+     padding: 0.5rem 0rem;
+    .container{
+         width: none;
+    }
+    .button_topic{
+        padding-bottom: 0rem;
+    }
+    h3{
+        font-size: 0.9rem;
+        margin: 0rem;
+    }
+    .termAbout_info{
+        .termAbout_info_up{
+            h4{
+                font-size: 0.85rem;
+            }
+        }
+        .content{
+            font-size: 0.6rem;
+        }
+    }
+ }
+}
+ 
+@include responsive_576{
+ .termAbout{
+     padding: 0.5rem 0rem;
+    .container{
+        width: 540px;
+    }
+    .button_topic{
+        padding-bottom: 0rem;
+    }
+    h3{
+        font-size: 1.1;
+        margin: 0rem;
+    }
+    .termAbout_info{
+        h4{
+            font-size: 1rem;
+        }
+    }
+    .content{
+            font-size: 0.7rem;
+    }
+
+ }
+}
+ 
+@include responsive_768{
+ .termAbout{
+     padding: 0.5rem 0rem;
+    h3{
+        font-size: 1.3rem;
+        margin: 0rem;
+    }
+    .container{
+        width: 720px;
+    }
+    .termAbout_info{
+        h4{
+            font-size: 1.2rem;
+        }
+    }
+    .content{
+            font-size: 0.8rem;
+    }
+ }
+}
+ 
+@include responsive_992{
+ .termAbout{
+    h3{
+        font-size: 1.5rem;
+    }
+    .container{
+        width: 960px;
+    }
+    .termAbout_info{
+        .termAbout_info_up{
+            h4{
+                font-size: 1.2rem;
+            }
+        }
+        .content{
+            font-size: 1rem;
+        }
+    }
+ }
+}
+ 
+@include responsive_1200{
+ .termAbout{
+    h3{
+        font-size: 1.7rem;
+    }
+    .container{
+        width: 1140px;
+    }
+    .termAbout_info{
+        .termAbout_info_up{
+            h4{
+                font-size: 1.5rem;
+            }
+        }
+        .content{
+            font-size: 1.1rem;
+        }
+    }
+ 
+ }
 }

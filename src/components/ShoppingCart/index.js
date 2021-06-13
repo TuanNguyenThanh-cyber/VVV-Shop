@@ -117,7 +117,7 @@ export default function ShoppingCart() {
       </div>
       <div className="container mb-5">
         <div className="row no-gutters">
-          <div className="col-8 box-all-sp">
+          <div className="col-lg-8 box-all-sp">
             {arrayDataOrderCart.length ? arrayDataOrderCart.map((item, index) => (
               <div className="row no-gutters box-sp">
                 <div className="col-3">
@@ -171,7 +171,7 @@ export default function ShoppingCart() {
               </div>
             )) : (<p> Chưa có sản phẩm </p>)}
           </div>
-          <div className="col-4 info">
+          <div className="col-lg-4 col- info">
             <div className="row box-info">
               <div className="col no-gutters">
                 <div className="row title-info no-gutters">

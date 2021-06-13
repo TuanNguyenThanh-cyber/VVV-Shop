@@ -1,49 +1,160 @@
-.container{
-    
-    .ggmap{
-        text-align: center;
-        .mapStore{
-            width: 800px;
-            height: 600px;
-        }
+.container {
+  .ggmap {
+    text-align: center;
+    .mapStore {
+      width: 1000px;
+      height: 600px;
+      width: 100%;
     }
-    
-    .gap-md{
-        display: block;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        height: 50px;
-    }
-    .titleinput{
-        text-align: center;
-    }
+  }
 
-    .infocontact{    
-        .forminfo{
-            font-size: 25px;  
-            border-radius: 5px;
-            .titleinfo{
-            margin-top: 10px;
-            padding-left: 200px;
-            }
-            .inputinfo{
-                margin-top: 10px;
-                width: 400px;
-                
-            }
-            .center{
-                margin-top: 10px;
-                text-align: center;
-                .btnsend{
-                    font-size: 20px;
-                    border-radius: 20px;
-                    width: 200px;
-                    text-align: center;
-                    background-color: #027492;
-                }
-            }
-        }
-        
+  .gap-md {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+  }
+  .titleinput{
+      text-align: center;
+  }
+  .contact-form {
+    text-align: center;
+    padding: 0rem 10rem;
+    width: 100%;
+    height: auto;
+    margin: auto;
+  }
+  .align-input {
+    margin-top: 1rem;
+  }
+  .input_group input {
+    height: 40px;
+    font-size: 17px;
+  }
+
+  input[type="submit"] {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0.8rem 10rem;
+    background-color: #027492;
+    border-radius: 5px;
+    color: white !important;
+    transition: all 0.5s;
+    border: none;
+  }
+  .login-send:hover {
+    background-color: #013a49 !important;
+  }
+}
+
+$res_575: "only screen and (max-width: 575px)";
+$res_576: "only screen and (min-width: 576px) and (max-width:767px)";
+$res_768: "only screen and (min-width: 768px) and (max-width:991px)";
+$res_992: "only screen and (min-width: 992px) and (max-width:1999px)";
+$res_1200: "only screen and (min-width: 1200px)";
+
+@mixin responsive_575() {
+  @media #{$res_575} {
+    @content;
+  }
+}
+@mixin responsive_576() {
+  @media #{$res_576} {
+    @content;
+  }
+}
+@mixin responsive_768() {
+  @media #{$res_768} {
+    @content;
+  }
+}
+@mixin responsive_992() {
+  @media #{$res_992} {
+    @content;
+  }
+}
+@mixin responsive_1200() {
+  @media #{$res_1200} {
+    @content;
+  }
+}
+
+/*edit*/
+@include responsive_575 {
+  .container {
+    width: none;
+    h2 {
+      font-size: 1rem;
     }
+    .contact-form{
+        padding: 0rem 1rem;
+    }
+    .input_group input {
+        height: 40px;
+        font-size: 14px;
+    }
+    input[type="submit"] {
+        font-size: 14px !important;
+        padding: 0.5rem 3rem;
+    }
+  }
+}
+
+@include responsive_576 {
+  .container {
+    width: 540px;
+    h2 {
+      font-size: 1.5rem;
+    }
+    .contact-form{
+        padding: 0rem 2rem;
+    }
+    .input_group input {
+        height: 40px;
+        font-size: 15px;
+    }
+    input[type="submit"] {
+        font-size: 15px !important;
+        padding: 0.5rem 6rem;
+    }
+  }
+}
+
+@include responsive_768 {
+  .container {
+    width: 720px;
+    h2 {
+      font-size: 1.8rem;
+    }
+    .contact-form{
+        padding: 0rem 4rem;
+    }
+    .input_group input {
+        height: 45px;
+        font-size: 15px;
+    }
+    input[type="submit"] {
+        font-size: 15px !important;
+        padding: 0.8rem 8rem;
+    }
+  }
+}
+
+@include responsive_992 {
+  .container {
+    width: 960px;
+    h2 {
+      font-size: 2rem;
+    }
+    }
+}
+
+@include responsive_1200 {
+  .container {
+    width: 1140px;
+    h2 {
+      font-size: 2rem;
+    }
+  }
 }
