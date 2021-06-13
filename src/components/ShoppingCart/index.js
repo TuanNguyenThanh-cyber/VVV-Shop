@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import "./style.scss";
 import { allProductsAction } from "../../redux/actions/allProductsAction";
 import { getInfoUserAction } from "../../redux/actions/getInfoUserAction";
 import { formatMoneyVND } from "../../utils/formatMoneyVND";
+import NoProduct from "../NoProduct";
 import axios from "axios";
 
 export default function ShoppingCart() {
@@ -20,7 +22,9 @@ export default function ShoppingCart() {
   let total = 0;
 
   // Order Cart
-  let orderCart = localStorage.getItem("orderCart") ? JSON.parse(localStorage.getItem("orderCart")) : [];
+  let orderCart = localStorage.getItem("orderCart")
+    ? JSON.parse(localStorage.getItem("orderCart"))
+    : [];
   let arrayIdOrderCart = Object.keys(orderCart);
   let [arrayDataOrderCart, setArrayDataOrderCart] = useState([]);
 
@@ -39,12 +43,9 @@ export default function ShoppingCart() {
     });
   }
 
-  console.log("arrayDataOrderCart", arrayDataOrderCart);
-
   const handleAmountOrder = (item, status, index) => {
     if (status) {
       orderCart[item._id]++;
-
     } else if (item.amount <= 1) {
       delete orderCart[item._id];
     } else {
@@ -65,7 +66,7 @@ export default function ShoppingCart() {
       const detail = {
         product: id,
         quantity: orderCart[id],
-      }
+      };
       details.push(detail);
     });
 
@@ -74,34 +75,37 @@ export default function ShoppingCart() {
       phone: dataUser.phone,
       address: dataUser.address,
       note: "",
-    }
+    };
 
-    // payment 
+    // payment
     const payment = {
       transaction_id: "",
       method: "cash",
-    }
+    };
 
     const body = {
       details,
       deliver,
       payment,
-
-    }
+    };
 
     try {
-      const result = await axios.post("http://127.0.0.1:8080/api/orders", body, {
-        headers: {
-          auth_token: token,
+      const result = await axios.post(
+        "http://127.0.0.1:8080/api/orders",
+        body,
+        {
+          headers: {
+            auth_token: token,
+          },
         }
-      })
+      );
       alert("Đã đặt hàng thành công");
       localStorage.removeItem("orderCart");
       window.location = "/";
     } catch (error) {
       alert("Đặt hàng chưa thành công, vui lòng thử lại sau");
     }
-  }
+  };
 
   return (
     <div>
@@ -118,58 +122,64 @@ export default function ShoppingCart() {
       <div className="container mb-5">
         <div className="row no-gutters">
           <div className="col-8 box-all-sp">
-            {arrayDataOrderCart.length ? arrayDataOrderCart.map((item, index) => (
-              <div className="row no-gutters box-sp">
-                <div className="col-3">
-                  <img src={item.images[0]} alt />
-                </div>
-                <div className="col-4 second">
-                  <p>{item.name}</p>
-                  <div className="row">
-                    <div className="col-3">
-                      <button className="btn btn-danger mt-3">Xóa</button>
-                    </div>
+            {arrayDataOrderCart.length ? (
+              arrayDataOrderCart.map((item, index) => (
+                <div className="row no-gutters box-sp">
+                  <div className="col-3">
+                    <img src={item.images[0]} alt="" />
                   </div>
-                </div>
-                <div className="col-5 third">
-                  <div className="row no-gutters">
-                    <div className="col-6 no-gutters">
-                      <p className="now-price">
-                        {formatMoneyVND(item.originalPrice)}
-                      </p>
-                      <div className="row no-gutters">
-                        <div className="col-8">
-                          <p className="real-price">25.990.000đ</p>
-                        </div>
-                        <div className="col-4">
-                          <p>-12%</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="buttons_added">
-                        <button
-                          className="minus is-form"
-                          type="button"
-                          onClick={() => handleAmountOrder(item, false, index)}
-                          disabled={item.amount === 0}
-                        >
-                          -
-                        </button>
-                        <span className="input-qty">{item.amount}</span>
-                        <button
-                          className="plus is-form"
-                          type="button"
-                          onClick={() => handleAmountOrder(item, true, index)}
-                        >
-                          +
-                        </button>
+                  <div className="col-4 second">
+                    <p>{item.name}</p>
+                    <div className="row">
+                      <div className="col-3">
+                        <button className="btn btn-danger mt-3">Xóa</button>
                       </div>
                     </div>
                   </div>
+                  <div className="col-5 third">
+                    <div className="row no-gutters">
+                      <div className="col-6 no-gutters">
+                        <p className="now-price">
+                          {formatMoneyVND(item.originalPrice)}
+                        </p>
+                        <div className="row no-gutters">
+                          <div className="col-8">
+                            <p className="real-price">25.990.000đ</p>
+                          </div>
+                          <div className="col-4">
+                            <p>-12%</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="buttons_added">
+                          <button
+                            className="minus is-form"
+                            type="button"
+                            onClick={() =>
+                              handleAmountOrder(item, false, index)
+                            }
+                            disabled={item.amount === 0}
+                          >
+                            -
+                          </button>
+                          <span className="input-qty">{item.amount}</span>
+                          <button
+                            className="plus is-form"
+                            type="button"
+                            onClick={() => handleAmountOrder(item, true, index)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )) : (<p> Chưa có sản phẩm </p>)}
+              ))
+            ) : (
+              <NoProduct content="Oops! Chưa có sản phẩm trong giỏ hàng"></NoProduct>
+            )}
           </div>
           <div className="col-4 info">
             <div className="row box-info">
@@ -192,9 +202,7 @@ export default function ShoppingCart() {
                 </div>
                 <div className="row no-gutters detail-adress">
                   <div className="col">
-                    <p>
-                      {dataUser && dataUser.address}
-                    </p>
+                    <p>{dataUser && dataUser.address}</p>
                   </div>
                 </div>
               </div>

@@ -26,7 +26,22 @@ export default function HeaderMiddle(props) {
   // );
 
   let { isScroll } = props;
+
+  // Wish list
+  let wishList = localStorage.getItem("wishList")
+    ? JSON.parse(localStorage.getItem("wishList"))
+    : [];
+  let arrayIdWishList = Object.keys(wishList);
+
+  // Order Cart
+  let orderCart = localStorage.getItem("orderCart")
+    ? JSON.parse(localStorage.getItem("orderCart"))
+    : [];
+  let arrayIdOrderCart = Object.keys(orderCart);
+
   const [result, setResult] = useState(false);
+  const [amountLoveProduct, setAmountLoveProduct] = useState(arrayIdWishList.length);
+  const [amountOrderCart, setAmount] = useState(arrayIdOrderCart.length);
 
   const abortController = new AbortController();
   const signal = abortController.signal;
@@ -70,14 +85,12 @@ export default function HeaderMiddle(props) {
           <Link className="HeaderMiddle_icon col-3" to="/myloveproduct">
             <button className="HeaderMiddle__btn-heart">
               <FaRegHeart className="HeaderMiddle_iconHeart"></FaRegHeart>
-              <span className="HeaderMiddle_amountHeart">1</span>
+              <span className="HeaderMiddle_amountHeart">{amountLoveProduct}</span>
             </button>
             <Link className="HeaderMiddle_shoppingcart" to="/myshoppingcart">
               <div className="shoppingcart_container">
                 <FaShoppingCart className="HeaderMiddle_iconShoppingCart"></FaShoppingCart>
-                <span className="HeaderMiddle_amountShoppingCart">
-                  2
-                </span>
+                <span className="HeaderMiddle_amountShoppingCart">{amountOrderCart}</span>
               </div>
               <span className="HeaderMiddle_shoppingcart-name">Giỏ hàng</span>
             </Link>
