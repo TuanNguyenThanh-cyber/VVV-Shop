@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-4">
             <div>
-              <img src="/images/logoVVVfooter.png" className="logo" />
+              <img src="/images/logoVVVfooter.png" className="logo w-75" />
             </div>
             <p className="title">CÔNG TY TNHH THƯƠNG MẠI VVV SHOP</p>
             <p className="content">
@@ -25,7 +25,7 @@ export default function Footer() {
             </p>
             <p className="content">Cảm ơn bạn vì đã chọn VVV Shop!</p>
           </div>
-          <div className="col-4">
+          <div className="col-md-4">
             <p className="section">Về chúng tôi</p>
             <hr />
             <p className="content">
@@ -44,7 +44,7 @@ export default function Footer() {
               <a href="#">Giải quyết khiếu nại, tranh chấp</a>
             </p>
           </div>
-          <div className="col-4">
+          <div className="col-md-4">
             <p className="section">Liên hệ với chúng tôi</p>
             <hr />
             <p>

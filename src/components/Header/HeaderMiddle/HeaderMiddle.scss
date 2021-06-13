@@ -98,3 +98,31 @@
         width: 60%;
     }
 }
+
+@media only screen and ( min-width: 300px){
+    .HeaderMiddle_shoppingcart{
+        margin-left: 10px;
+    }
+}
+@media only screen and ( max-width: 575px){
+    
+    .HeaderMiddle_shoppingcart-name{
+        display: none;
+    }
+    .HeaderMiddle_input{
+        line-height: 24px;
+        font-size: 12px;
+    }
+    .HeaderMiddle_btnSearch{
+        width: 50px;        
+        font-size: 12px;
+        height: 32px;
+        overflow: hidden;
+    }
+    .HeaderMiddle_search{
+        padding: 5px !important;
+    }
+    .HeaderMiddle_icon{
+        padding-left: 0px;
+    }
+}

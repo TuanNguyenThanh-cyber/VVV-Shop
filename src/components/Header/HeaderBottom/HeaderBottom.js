@@ -18,7 +18,7 @@ export default function HeaderBottom() {
     <div className="HeaderBottom">
       <div className="container">
         <div className="row">
-          <div className="HeaderBottom_AllCategory col-3">
+          <div className="HeaderBottom_AllCategory col-3 d-none d-md-block">
             <Button className="HeaderBottom_btnCategory" onClick={toggle}>
               <span className="HeaderBottom_Text">All Category</span>
               <FaList className="HeaderBottom_Icon"></FaList>
@@ -48,7 +48,7 @@ export default function HeaderBottom() {
               </ul>
             </Collapse>
           </div>
-          <div className="HeaderBottom_NavMenu col-9">
+          <div className="HeaderBottom_NavMenu col-md-9">
             <Nav className="HeaderBottom_Nav">
               <NavItem className="HeaderBottom_NavItem">
                 <NavLink
