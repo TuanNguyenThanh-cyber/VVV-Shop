@@ -10,6 +10,7 @@ import "./Form.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/actions/loginAction";
 import { Loading } from "../Loading";
+import Swal from 'sweetalert2';
 
 // Tạo schema validation
 const schema = yup.object().shape({
@@ -38,6 +39,11 @@ export default function FormLogin() {
   };
 
   if(localStorage.getItem("auth_token") !== null){
+    Swal.fire({
+      icon: 'success',
+      title: 'Đăng Nhập thành công',
+      text: 'Chúc bạn trải nghiệm mua sắm vui vẻ',
+    })
     return (
       <Redirect to="/"></Redirect>
     )

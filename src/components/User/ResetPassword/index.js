@@ -21,7 +21,7 @@ const schema = yup.object().shape({
 });
 
 export default function ResetPassword() {
-  const token = localStorage.getItem("auth_token");
+  const token = localStorage.getItem("auth_token") ? localStorage.getItem("auth_token") : null;
   var decoded = jwt_decode(token);
   const dispatch = useDispatch();
 
@@ -31,25 +31,34 @@ export default function ResetPassword() {
     formState: { errors, isValid },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
-  let { data } = useSelector((state) => state.resetPasswordReducer);
-
-  const handleResetPassword = (value) => {
+  let { data } = useSelector((state) => state.resetPasswordReducer); 
+  const handleResetPassword = async (value) => {
     let dataResetPassword = {
       password: value.password,
     };
-    dispatch(resetPasswordAcion(decoded._id, dataResetPassword));
-  };
+    await dispatch(resetPasswordAcion(decoded._id, dataResetPassword));
 
-  if (data) {
-    var answer = alert("Đổi mật khẩu thành công, quay lại trang đăng nhập !")
-    if(answer === undefined){
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("userSignUp");
-      return(
-        <Redirect from="/user/restPassword" to="/login"></Redirect>
-      )
-    }
-  }
+    
+  };
+  console.log(data);
+  // if (data) {  
+    
+  //   var answer = Swal.fire({
+  //     icon: 'success',
+  //     title: 'Đổi mật khẩu thành công',
+  //     text: 'Vui lòng đăng nhập lại bằng mật khẩu mới',
+  //   })
+  //   answer = undefined;
+  //   // alert("Đổi mật khẩu thành công, quay lại trang đăng nhập !")
+    
+  //   if(answer === undefined){
+  //     localStorage.removeItem("auth_token");
+  //     localStorage.removeItem("userSignUp");
+  //     return(
+  //       <Redirect from="/user/restPassword" to="/login"></Redirect>
+  //     )
+  //   }
+  // }
 
   return (
     <div>

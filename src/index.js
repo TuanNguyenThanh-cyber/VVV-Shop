@@ -14,7 +14,7 @@ const middleware = applyMiddleware(thunk);
 const enhancer = compose(
   middleware, // middleware
   // redux devtools: Dùng để theo dõi các action, state thay đổi như thế nào trên redux devtools
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 const store = createStore(rootReducer, enhancer);

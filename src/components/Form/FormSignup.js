@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../redux/actions/signupAction";
 import { Loading } from "../Loading";
 import "./Form.scss";
+import Swal from 'sweetalert2';
 
 // Regex VietNam phone number
 const phoneRegVn = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
@@ -60,6 +61,7 @@ export default function FormSignup() {
     };
     console.log(dataUser);
     dispatch(signup(dataUser));
+    
   };
 
   if (isLoading) {
@@ -67,8 +69,13 @@ export default function FormSignup() {
   }
 
   if(localStorage.getItem("userSignUp") !== null){
-    alert("Chúc mừng bạn đã đăng ký thành công tài khoản ! Vui lòng đăng nhập lại");
+    Swal.fire({
+      icon: 'success',
+      title: 'Đăng kí thành công',
+      text: 'Vui lòng đăng nhập tài khoản',
+    })
     localStorage.removeItem("userSignUp");
+    
     return(
       <Redirect from="/signup" to="/login"></Redirect>
     )
