@@ -28,6 +28,11 @@ export default function LoveProduct() {
     });
   }
 
+  const handleDeleteLoveProduct = (item) => {
+    delete loveProduct[item._id];
+    window.location.reload();
+  }
+
   console.log(arrayDataLoveProduct);
   console.log(dataAllProducts);
   return (
@@ -55,7 +60,7 @@ export default function LoveProduct() {
                     <p>{item.name}</p>
                     <div className="row">
                       <div className="col">
-                        <button className="btn btn-danger">Xóa</button>
+                        <button className="btn btn-danger" onClick={() => handleDeleteLoveProduct(item)}>Xóa</button>
                       </div>
                     </div>
                   </div>

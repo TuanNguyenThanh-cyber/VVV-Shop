@@ -12,6 +12,7 @@ import updateInfoUserReducer from "./updateInfoUserReducer";
 import productDetailReducer from "./productDetailReducer";
 import allProductsReducer from "./allProductsReducer";
 import orderProductReducer from "./orderProductReducer";
+import productFilterReducer from "./productFilterReducer";
 
 const rootReducer = combineReducers({
   // Nơi khai báo các reducer con
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   updateInfoUserReducer,
   productDetailReducer,
   allProductsReducer,
-  orderProductReducer
+  orderProductReducer,
+  productFilterReducer,
 });
 
 export default rootReducer;

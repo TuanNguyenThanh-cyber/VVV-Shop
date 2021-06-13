@@ -48,7 +48,7 @@ export default function User() {
                   </li>
                   <li className="category-list-item">
                     <NavLink activeClassName="active" to="/user/orderList">
-                      Danh sách đơn hàng (3)
+                      Danh sách đơn hàng
                     </NavLink>
                   </li>
                   <li className="category-list-item">

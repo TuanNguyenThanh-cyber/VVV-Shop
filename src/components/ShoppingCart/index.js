@@ -6,13 +6,17 @@ import "./style.scss";
 import { allProductsAction } from "../../redux/actions/allProductsAction";
 import { orderProductAction } from "../../redux/actions/orderProductAction";
 import { getInfoUserAction } from "../../redux/actions/getInfoUserAction";
+import { productFilterAction } from "../../redux/actions/productFilterAction";
 import { formatMoneyVND } from "../../utils/formatMoneyVND";
 import NoProduct from "../NoProduct";
 import axios from "axios";
 
 export default function ShoppingCart() {
   const dispatch = useDispatch();
-  const { dataAllProducts } = useSelector((state) => state.allProductsReducer);
+  // const { dataAllProducts } = useSelector((state) => state.allProductsReducer);
+  let { dataProductFilter } = useSelector(
+    (state) => state.productFilterReducer
+  );
   const { dataUser } = useSelector((state) => state.getInfoUserReducer);
   const { dataOrderProduct } = useSelector(
     (state) => state.orderProductReducer
@@ -30,27 +34,40 @@ export default function ShoppingCart() {
     ? JSON.parse(localStorage.getItem("orderCart"))
     : [];
   let arrayIdOrderCart = Object.keys(orderCart);
+  console.log("arrayIdOrderCart", arrayIdOrderCart);
+  const ObjOrderCart = {
+    ids: arrayIdOrderCart,
+  };
   let [arrayDataOrderCart, setArrayDataOrderCart] = useState([]);
 
   useEffect(() => {
-    dispatch(allProductsAction());
+    // dispatch(allProductsAction());
+    dispatch(productFilterAction(ObjOrderCart));
     dispatch(getInfoUserAction(decoded._id));
   }, []);
 
-  if (dataAllProducts) {
-    dataAllProducts.filter((item) => {
+  // if (dataAllProducts) {
+  //   dataAllProducts.filter((item) => {
+  //     if (orderCart.hasOwnProperty(item._id)) {
+  //       arrayDataOrderCart.push({ ...item, amount: orderCart[item._id] });
+  //       total += item.originalPrice * orderCart[item._id];
+  //     }
+  //     return orderCart.hasOwnProperty(item._id);
+  //   });
+  // }
+
+  if (dataProductFilter) {
+    dataProductFilter.map((item) => {
       if (orderCart.hasOwnProperty(item._id)) {
-        arrayDataOrderCart.push({ ...item, amount: orderCart[item._id] });
         total += item.originalPrice * orderCart[item._id];
       }
-      return orderCart.hasOwnProperty(item._id);
     });
   }
 
   const handleAmountOrder = (item, status, index) => {
     if (status) {
       orderCart[item._id]++;
-    } else if (item.amount <= 1) {
+    } else if (orderCart[item._id] <= 1) {
       delete orderCart[item._id];
     } else {
       orderCart[item._id]--;
@@ -59,7 +76,7 @@ export default function ShoppingCart() {
     window.location.reload();
   };
 
-  const checkout = async () => {
+  const checkout = () => {
     if (!arrayIdOrderCart.length) {
       alert("Bạn chưa có sản phẩm nào trong giỏ hàng");
       return;
@@ -93,26 +110,14 @@ export default function ShoppingCart() {
       payment,
     };
 
-    // try {
-    //   const result = await axios.post(
-    //     "http://127.0.0.1:8080/api/orders",
-    //     body,
-    //     {
-    //       headers: {
-    //         auth_token: token,
-    //       },
-    //     }
-    //   );
-    //   alert("Đã đặt hàng thành công");
-    //   localStorage.removeItem("orderCart");
-    //   // window.location = "/";
-    //   console.log(result);
-    // } catch (error) {
-    //   alert("Đặt hàng chưa thành công, vui lòng thử lại sau");
-    // }
-
     dispatch(orderProductAction(body));
   };
+
+  const handleDeleteOrderProduct = (item) => {
+    if(orderCart[item._id]){
+      delete orderCart[item._id];
+    }
+  }
 
   return (
     <div>
@@ -129,8 +134,8 @@ export default function ShoppingCart() {
       <div className="container mb-5">
         <div className="row no-gutters">
           <div className="col-lg-8 box-all-sp">
-            {arrayDataOrderCart.length ? (
-              arrayDataOrderCart.map((item, index) => (
+            {dataProductFilter ? (
+              dataProductFilter.map((item, index) => (
                 <div className="row no-gutters box-sp">
                   <div className="col-3">
                     <img src={item.images[0]} alt="" />
@@ -139,7 +144,7 @@ export default function ShoppingCart() {
                     <p>{item.name}</p>
                     <div className="row">
                       <div className="col-3">
-                        <button className="btn btn-danger mt-3">Xóa</button>
+                        <button className="btn btn-danger mt-3" onClick={() => handleDeleteOrderProduct(item)}>Xóa</button>
                       </div>
                     </div>
                   </div>
@@ -166,11 +171,13 @@ export default function ShoppingCart() {
                             onClick={() =>
                               handleAmountOrder(item, false, index)
                             }
-                            disabled={item.amount === 0}
+                            disabled={orderCart[item._id] === 0}
                           >
                             -
                           </button>
-                          <span className="input-qty">{item.amount}</span>
+                          <span className="input-qty">
+                            {orderCart[item._id]}
+                          </span>
                           <button
                             className="plus is-form"
                             type="button"

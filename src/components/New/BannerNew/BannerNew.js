@@ -123,7 +123,7 @@ export default function BannerNew() {
                           className="authorimg"
                           src={item.author.avatar}
                         ></img>
-                        {item.createdAt}
+                        {new Date(item.createdAt).toLocaleString()}
                       </p>
                     </div>
                   </div>

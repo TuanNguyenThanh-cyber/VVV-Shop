@@ -13,7 +13,6 @@ export function orderProductAction(value) {
     dispatch({ type: ORDER_PRODUCT_SUCCESS, payload: { data } });
       alert("Đã đặt hàng thành công");
       localStorage.removeItem("orderCart");
-      window.location = "/";
     } catch (error) {
       dispatch({
         type: ORDER_PRODUCT_FAILURE,
