@@ -12,24 +12,32 @@ export default function Mapcontact() {
             </div>
             <div>
                 <h2 className="titleinput">Để lại thông tin để được ưu đãi</h2>
-                <div className="row infocontact">
-                    <form className="forminfo">
-                        <div className="row">
-                            <div className="col">
-                                <p className="titleinfo">Họ và Tên</p>
-                                <p className="titleinfo">Số điện thoại</p>
-                                <p className="titleinfo">Email</p>
-                            </div>
-                            <div className="col">
-                                <input className="inputinfo" type="text" id="lname" name="Name" placeholder="Nhập họ tên"/>
-                                <input className="inputinfo" type="text" id="lname" name="SDT" placeholder="Nhập số điện thoại"/>
-                                <input className="inputinfo" type="text" id="lname" name="Email" placeholder="Email của bạn"/>
-                            </div>
+                <div class="row contact-form">
+                        <div class="col">
+                            <form method="POST" class="" id="contactForm" action="">
+                    
+                                <div class="form-group input_group">
+                                    <input id="name" class="form-control align-input" name="name" type="text" autocomplete="on"
+                                        placeholder="Họ và Tên"/>
+                                </div>
+
+                                <div class="form-group input_group">
+                                    <input id="sdt" class="form-control align-input" name="sdt" type="text" autocomplete="on"
+                                        placeholder="Nhập số điện thoại"/>
+                                </div>
+                    
+                                <div class="form-group input_group">
+                                    <input id="email" class="form-control align-input" name="email" type="text" autocomplete="on"
+                                        placeholder="Email của bạn"/>
+                                </div>
+                    
+                                <div class="form-group">
+                                    <input type="submit" id="submit" value="Gửi" class="btn btn-primary btn-send" name="submit"/>
+                                </div>
+                    
+                            </form>
                         </div>
-                        <div className="center"><Button className="btnsend">Gửi thông tin</Button></div>
-                        
-                    </form>
-                </div>
+                    </div>
             </div>
             <div className="gap-md"></div>
         </div>

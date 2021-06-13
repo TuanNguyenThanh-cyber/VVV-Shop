@@ -56,7 +56,7 @@ export default function AllProducts() {
         <div className="row">
           {dataProducts &&
             dataProducts.data.map((item) => (
-              <div className="col-3" key={item.id}>
+              <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={item.id}>
                 <div className="card mb-3">
                   <div className="row no-gutters">
                     <div className="col-12 my-fix keep-ratio">

@@ -10,6 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { productDetailAction } from "../../redux/actions/productDetailAction";
+import Swal from 'sweetalert2';
 import "./ProDetail.scss";
 
 export default function ProDetail() {
@@ -63,6 +64,11 @@ export default function ProDetail() {
       orderCart[idProduct]++;
     }
     localStorage.setItem("orderCart", JSON.stringify(orderCart));
+    Swal.fire({
+      icon: 'success',
+      title: 'Thêm vào giỏ hàng thành công',
+      text: 'Truy cập giỏ hàng để tiến hành thanh toán!',
+    })
   };
 
   if (isLoading) {

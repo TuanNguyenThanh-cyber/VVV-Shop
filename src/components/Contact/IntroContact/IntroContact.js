@@ -11,14 +11,19 @@ import {FaFacebookF, FaInstagramSquare, FaTwitterSquare} from "react-icons/fa";
 export default function IntroContact() {
     return (
         <div className="introContact">
-            <div className="container">
-                <div className="breadcrumb">
-                    <Link to="/" className="infobreadcrumb">Trang chủ</Link>
-                        <span> / </span>
-                    <Link to="/contact" className="infobreadcrumb active">Liên hệ</Link>
+            <div className="bg-breadcrumb">
+                <div className="container">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item">
+                            <a href="#">Trang chủ</a>
+                        </li>
+                        <li className="breadcrumb-item active">Liên hệ</li>
+                        </ol>
                 </div>
+            </div>
+            <div className="container">
                 <div className="title-page">
-                    Liên hệ
+                    Liên hệ với chúng tôi
                 </div>
                 <div className="banner-box">
                     <img src="/images/contact.jpg"
@@ -39,14 +44,14 @@ export default function IntroContact() {
                                 </a>                               
                             </li>
                             <li className="list-item">
-                                <a className="flex-container" href="tel:0123456789">
+                                <a className="flex-container" href="#">
                                     <FiPhoneCall className="firsticon"></FiPhoneCall>
                                     <div className="text">Call: 0123456789</div>
                                     <IoMdArrowDropright className="lasticon"></IoMdArrowDropright>
                                 </a>                               
                             </li>
                             <li className="list-item">
-                                <a className="flex-container" href="mailto:vvvshop@gmail.com">
+                                <a className="flex-container" href="#">
                                     <GrMail className="firsticon"></GrMail>
                                     <div className="text">Liên hệ qua Email</div>
                                     <IoMdArrowDropright className="lasticon"></IoMdArrowDropright>

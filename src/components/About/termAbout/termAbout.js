@@ -31,10 +31,10 @@ export default function TermAbout() {
                                     <h4>Các khu vực nội thành</h4>
                                     <img src="/images/vcnoithanh.png" className="terms_picture"></img>
                                 </div>
-                                <div>
+                                <div className="content">
                                     <span className="font-weight-bold">Nội thành TP. Hồ Chí Minh</span>: Quận 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, Thủ Đức, Tân Phú, Tân Bình, Phú Nhuận, Gò Vấp, Bình Thạnh, Bình Tân.
                                 </div>
-                                <div>
+                                <div className="content">
                                     <span className="font-weight-bold">Nội thành Hà Nội</span>: Quận Ba Đình, Hoàn Kiếm, Tây Hồ, Long Biên, Cầu Giấy, Đống Đa, Hai Bà Trưng, Hoàng Mai, Thanh Xuân, Nam Từ Liêm, Bắc Từ Liêm, Hà Đông.
                                 </div>
                                 <div className="termAbout_info_up">
@@ -56,7 +56,7 @@ export default function TermAbout() {
                     <div className="termAbout_info card">
                         <Collapse isOpen={isOpen1}>
                             <CardBody>
-                                <div>
+                                <div className="content">
                                 Nhằm mang đến cho quý khách hàng những trải nghiệm mua sắm trực tuyến toàn diện nhất, tại VVVSHOP, chúng tôi hỗ trợ 05 phương thức thanh toán để quý khách dễ dàng lựa chọn:
                                     <ol>
                                         <li>Tiền mặt(COD)</li>
@@ -85,7 +85,7 @@ export default function TermAbout() {
                     <div className="termAbout_info card">
                         <Collapse isOpen={isOpen2}>
                             <CardBody>
-                            <p>
+                            <p className="content">
                                 <strong>1. Điều kiện bảo hành:</strong>
                                 <br/> Sản phẩm được bảo hành miễn phí nếu đảm bảo tất cả các điều kiện sau:
                                 <br/> – Sản phẩm thuộc danh mục được bảo hành từ Nhà sản xuất hoặc Nhà phân phối.
@@ -95,7 +95,7 @@ export default function TermAbout() {
                                 <br/> – Phiếu bảo hành đầy đủ thông tin: mã sản phẩm, số seri, ngày sản xuất, tên khách hàng sử dụng, địa chỉ, ngày mua (đối với các sản phẩm không áp dụng Bảo hành điện tử).
                                 <br/> – Tem bảo hành và tem niêm phong (nếu có) của Nhà sản xuất trên sản phẩm còn nguyên vẹn.
                             </p>
-                            <p>Sản phẩm không được bảo hành hoặc sẽ phát sinh phí bảo hành nếu rơi vào một trong các trường hợp sau:
+                            <p className="content">Sản phẩm không được bảo hành hoặc sẽ phát sinh phí bảo hành nếu rơi vào một trong các trường hợp sau:
                                 <br/> – Sản phẩm không thuộc danh mục được bảo hành từ Nhà sản xuất hoặc nhà phân phối.
                                 <br/> – Sản phẩm không thỏa mãn một trong những điều kiện bảo hành ở mục 1.
                                 <br/> – Số series, model sản phẩm không khớp với Phiếu bảo hành.
@@ -103,7 +103,7 @@ export default function TermAbout() {
                                 <br/> – Sản phẩm bị hư hỏng do lỗi người sử dụng, và lỗi hư hỏng không nằm trong phạm vi bảo hành của Nhà sản xuất.
                                 <br/> – Với trường hợp phát sinh phí bảo hành, nhân viên chăm sóc khách hàng của VVVSHOP sẽ tư vấn đầy đủ thông tin cho khách hàng trước khi tiến hành các thủ tục bảo hành.
                             </p>
-                            <p><strong>2. Thời hạn bảo hành</strong>
+                            <p className="content"><strong>2. Thời hạn bảo hành</strong>
                                 <ul>
                                     <li><strong>Đối với Laptop, PC</strong><br/>
                                         Bảo hành 12-24 tháng tùy vào nhà cung cấp quy định kể từ ngày mua mới nếu sự cố hư hỏng do hãng sản xuất.

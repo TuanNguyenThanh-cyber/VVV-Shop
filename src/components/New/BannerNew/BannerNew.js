@@ -48,10 +48,10 @@ export default function BannerNew() {
         </div>
 
         <div className="row">
-          <div className="col bannermini">
+          <div className="col-12 col-sm-12 col-xl bannermini">
             <img src="/images/banner-01.png" className="imgmini"></img>
           </div>
-          <div className="col bannermini">
+          <div className="col-12 col-sm-12 col-xl bannermini">
             <img src="/images/banner-02.jpg" className="imgmini"></img>
           </div>
         </div>
@@ -59,12 +59,12 @@ export default function BannerNew() {
         <hr></hr>
         
         <div className="row">
-          <div className="col-8">
+          <div className="col-12 col-sm-12 col-md-12 col-xl-8">
             <div className="row bordertitle">
               <span className="titlepopular">MỚI CẬP NHẬT</span>
             </div>
             {datablog &&
-              datablog.map((item) => (
+              datablog.data.map((item) => (
                 <>
                   <div className="row">
                     <div className="col-4 imgbox">
@@ -99,12 +99,12 @@ export default function BannerNew() {
               <button className="btn">Xem thêm</button>
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-12 col-sm-12 col-md-12 col-xl-4">
             <div className="row bordertitle">
               <span className="titlepopular">BÀI VIẾT PHỔ BIẾN</span>
             </div>
             {datablog &&
-              datablog.map((item) => (
+              datablog.data.map((item) => (
                 <>
                   <div className="row news">
                     <div className="col-6 imgbox">

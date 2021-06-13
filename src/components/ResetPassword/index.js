@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetPasswordAcion } from "../../redux/actions/resetPasswordAction";
 import { Loading } from "../Loading";
 import jwt_decode from "jwt-decode";
+import Swal from 'sweetalert2';
 
 // Tạo schema validation
 const schema = yup.object().shape({

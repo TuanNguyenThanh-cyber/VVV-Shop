@@ -128,7 +128,7 @@ export default function ShoppingCart() {
       </div>
       <div className="container mb-5">
         <div className="row no-gutters">
-          <div className="col-8 box-all-sp">
+          <div className="col-lg-8 box-all-sp">
             {arrayDataOrderCart.length ? (
               arrayDataOrderCart.map((item, index) => (
                 <div className="row no-gutters box-sp">
@@ -188,7 +188,7 @@ export default function ShoppingCart() {
               <NoProduct content="Oops! Chưa có sản phẩm trong giỏ hàng"></NoProduct>
             )}
           </div>
-          <div className="col-4 info">
+          <div className="col-lg-4 col- info">
             <div className="row box-info">
               <div className="col no-gutters">
                 <div className="row title-info no-gutters">
@@ -245,9 +245,9 @@ export default function ShoppingCart() {
             </div>
             <div className="row no-gutters">
               <div className="col">
-                <a href onClick={() => checkout()} className="btn-order">
+                <button onClick={() => checkout()} className="btn-order">
                   Tiến hành đặt hàng
-                </a>
+                </button>
               </div>
             </div>
           </div>

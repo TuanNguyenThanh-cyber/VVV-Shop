@@ -1,25 +1,124 @@
-.introAbout{
-    margin: 0;
-    padding: 0;
-    .container{
-        .breadcrumb{
-            .infobreadcrumb{
-                color: #027492;
-                font-weight: bold;
-                padding: 0 5px;
-            }
-            .active{
-                color: #6c757d;
-                display: inline-block;
-                border-bottom: 1px solid;
-            }    
-        }
-        .imgabout{
-            width: 570px;
-            border-radius: 5px;
-        }
-        .introInfo{
-            padding-left: 20px;
-        }
+.introAbout {
+  .bg-breadcrumb {
+    background-color: #e9ecef !important;
+    a {
+      color: #027492;
+      font-weight: bold;
     }
+  }
+  .container {
+    .imgabout{
+        padding-right: 0px;
+    }
+    .imgabout img{
+      width: 570px;
+      border-radius: 5px;
+      width: 100%;
+    }
+  }
+}
+
+$res_575 : "only screen and (max-width: 575px)";
+$res_576 : "only screen and (min-width: 576px) and (max-width:767px)";
+$res_768 : "only screen and (min-width: 768px) and (max-width:991px)";
+$res_992 : "only screen and (min-width: 992px) and (max-width:1999px)";
+$res_1200 : "only screen and (min-width: 1200px)";
+
+@mixin responsive_575() {
+    @media #{$res_575} {
+        @content;
+    }
+}
+@mixin responsive_576() {
+    @media #{$res_576} {
+        @content;
+    }
+}
+@mixin responsive_768() {
+    @media #{$res_768} {
+        @content;
+    }
+}
+@mixin responsive_992() {
+    @media #{$res_992} {
+        @content;
+    }
+}
+@mixin responsive_1200() {
+    @media #{$res_1200} {
+        @content;
+    }
+}
+
+/*edit*/
+@include responsive_575{
+ .introInfo{
+    .container{
+         width: none;
+    }
+    h1{
+        font-size: 1rem;
+    }
+    .content{
+        font-size: 0.6rem;
+    }
+
+ }
+}
+ 
+@include responsive_576{
+ .introInfo{
+    .container{
+        width: 540px;
+    }
+    h1{
+        font-size: 1rem;
+    }
+    .content{
+        font-size: 0.7rem;
+    }
+
+ }
+}
+ 
+@include responsive_768{
+ .introInfo{
+    h1{
+        font-size: 1rem;
+    }
+    .container{
+        width: 720px;
+    }
+    .content{
+        font-size: 0.8rem;
+    }
+ }
+}
+ 
+@include responsive_992{
+ .introInfo{
+    h1{
+        font-size: 2rem;
+    }
+    .container{
+        width: 960px;
+    }
+    .content{
+        font-size: 1rem;
+    }
+ }
+}
+ 
+@include responsive_1200{
+ .introInfo{
+    h1{
+        font-size: 2.5rem;
+    }
+    .container{
+        width: 1140px;
+    }
+    .content{
+        font-size: 1.1rem;
+    }
+ }
 }

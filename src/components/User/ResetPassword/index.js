@@ -21,7 +21,9 @@ const schema = yup.object().shape({
 });
 
 export default function ResetPassword() {
-  const token = localStorage.getItem("auth_token");
+  const token = localStorage.getItem("auth_token")
+    ? localStorage.getItem("auth_token")
+    : null;
   var decoded = jwt_decode(token);
   const dispatch = useDispatch();
 
@@ -31,23 +33,14 @@ export default function ResetPassword() {
     formState: { errors, isValid },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
+  let { data } = useSelector((state) => state.resetPasswordReducer);
   const handleResetPassword = async (value) => {
     let dataResetPassword = {
       password: value.password,
     };
     await dispatch(resetPasswordAcion(decoded._id, dataResetPassword));
   };
-
-  let { data } = useSelector((state) => state.resetPasswordReducer);
-
-  if (data) {
-    var answer = alert("Đổi mật khẩu thành công, quay lại trang đăng nhập !");
-    if (answer === undefined) {
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("userSignUp");
-      return <Redirect from="/user/resetPassword" to="/login"></Redirect>;
-    }
-  }
+  console.log(data);
 
   return (
     <div>
