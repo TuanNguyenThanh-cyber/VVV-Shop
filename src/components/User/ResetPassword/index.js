@@ -31,23 +31,21 @@ export default function ResetPassword() {
     formState: { errors, isValid },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
-  let { data } = useSelector((state) => state.resetPasswordReducer);
-
-  const handleResetPassword = (value) => {
+  const handleResetPassword = async (value) => {
     let dataResetPassword = {
       password: value.password,
     };
-    dispatch(resetPasswordAcion(decoded._id, dataResetPassword));
+    await dispatch(resetPasswordAcion(decoded._id, dataResetPassword));
   };
 
+  let { data } = useSelector((state) => state.resetPasswordReducer);
+
   if (data) {
-    var answer = alert("Đổi mật khẩu thành công, quay lại trang đăng nhập !")
-    if(answer === undefined){
+    var answer = alert("Đổi mật khẩu thành công, quay lại trang đăng nhập !");
+    if (answer === undefined) {
       localStorage.removeItem("auth_token");
       localStorage.removeItem("userSignUp");
-      return(
-        <Redirect from="/user/restPassword" to="/login"></Redirect>
-      )
+      return <Redirect from="/user/resetPassword" to="/login"></Redirect>;
     }
   }
 

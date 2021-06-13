@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./style.scss";
 import { allProductsAction } from "../../redux/actions/allProductsAction";
+import { orderProductAction } from "../../redux/actions/orderProductAction";
 import { getInfoUserAction } from "../../redux/actions/getInfoUserAction";
 import { formatMoneyVND } from "../../utils/formatMoneyVND";
 import NoProduct from "../NoProduct";
@@ -13,6 +14,9 @@ export default function ShoppingCart() {
   const dispatch = useDispatch();
   const { dataAllProducts } = useSelector((state) => state.allProductsReducer);
   const { dataUser } = useSelector((state) => state.getInfoUserReducer);
+  const { dataOrderProduct } = useSelector(
+    (state) => state.orderProductReducer
+  );
 
   // Get info user
   let objInfoUser = {};
@@ -89,22 +93,25 @@ export default function ShoppingCart() {
       payment,
     };
 
-    try {
-      const result = await axios.post(
-        "http://127.0.0.1:8080/api/orders",
-        body,
-        {
-          headers: {
-            auth_token: token,
-          },
-        }
-      );
-      alert("Đã đặt hàng thành công");
-      localStorage.removeItem("orderCart");
-      window.location = "/";
-    } catch (error) {
-      alert("Đặt hàng chưa thành công, vui lòng thử lại sau");
-    }
+    // try {
+    //   const result = await axios.post(
+    //     "http://127.0.0.1:8080/api/orders",
+    //     body,
+    //     {
+    //       headers: {
+    //         auth_token: token,
+    //       },
+    //     }
+    //   );
+    //   alert("Đã đặt hàng thành công");
+    //   localStorage.removeItem("orderCart");
+    //   // window.location = "/";
+    //   console.log(result);
+    // } catch (error) {
+    //   alert("Đặt hàng chưa thành công, vui lòng thử lại sau");
+    // }
+
+    dispatch(orderProductAction(body));
   };
 
   return (

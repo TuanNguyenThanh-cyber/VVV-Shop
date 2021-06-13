@@ -11,6 +11,7 @@ import newsDetailReducer from "./newsDetailReducer";
 import updateInfoUserReducer from "./updateInfoUserReducer";
 import productDetailReducer from "./productDetailReducer";
 import allProductsReducer from "./allProductsReducer";
+import orderProductReducer from "./orderProductReducer";
 
 const rootReducer = combineReducers({
   // Nơi khai báo các reducer con
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   updateInfoUserReducer,
   productDetailReducer,
   allProductsReducer,
+  orderProductReducer
 });
 
 export default rootReducer;

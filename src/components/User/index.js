@@ -52,7 +52,7 @@ export default function User() {
                     </NavLink>
                   </li>
                   <li className="category-list-item">
-                    <NavLink activeClassName="active" to="/user/restPassword">
+                    <NavLink activeClassName="active" to="/user/resetPassword">
                       Đổi mật khẩu
                     </NavLink>
                   </li>
@@ -76,7 +76,7 @@ export default function User() {
                 <Route exact path="/user/orderList">
                   <OrderList></OrderList>
                 </Route>
-                <Route exact path="/user/restPassword">
+                <Route exact path="/user/resetPassword">
                   <ResetPassword></ResetPassword>
                 </Route>
               </Switch>
