@@ -11,10 +11,6 @@ export default function Newsdetail() {
   const { datanewsdetail, isLoading, error } = useSelector(
     (state) => state.newsDetailReducer
   );
-
-  const { datablog, isLoadingg, err } = useSelector(
-    (state) => state.blogReducer
-  );
   console.log(datanewsdetail);
   if (isLoading) {
     return <Loading></Loading>;
@@ -43,7 +39,7 @@ export default function Newsdetail() {
         </div>
 
         <div className="row newsbody">
-          <div className="col-8 newsinfo">
+          <div className="newsinfo">
             <h3 className="newstopic">{datanewsdetail.name}</h3>
             <div className="authinfo">
               <div className="authimage">
@@ -59,43 +55,7 @@ export default function Newsdetail() {
             <div className="info">{ReactHtmlParser(datanewsdetail.html)}</div>
           </div>
 
-          <div className="col-4 newspopular">
-            <div className="row bordertitle">
-              <span className="titlepopular">BÀI VIẾT PHỔ BIẾN</span>
-            </div>
-            {datablog &&
-              datablog.map((item) => (
-                <>
-                  <div className="row">
-                    <div className="col-4 imgbox">
-                      <img
-                        className="newsimages"
-                        src="/images/slider1.png"
-                        alt="news_image"
-                      ></img>
-                    </div>
-                    <div className="col-8 newsinfo">
-                      <a href={"/news/" + item.slug} className="font-weight-bold newsname">
-                        {item.name}
-                      </a>
-                      <p className="author">
-                        <img className="authimg" src={item.author.avatar}></img>
-                        {item.createdAt}
-                      </p>
-                    </div>
-                  </div>
-                  <hr></hr>
-                </>
-              ))}
-
-            <div className="row">
-              <div className="col">
-                <div className="morebtn">
-                  <button className="btn">Xem thêm</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div className="gap-md"></div>
       </div>
