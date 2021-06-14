@@ -3,6 +3,7 @@ import "./OrderList.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { productFilterAction } from "../../../redux/actions/productFilterAction";
 import { formatMoneyVND } from "../../../utils/formatMoneyVND";
+import NoProduct from "../../../components/NoProduct";
 
 export default function OrderList() {
   const dispatch = useDispatch();
@@ -26,9 +27,11 @@ export default function OrderList() {
 
   // Get Id item order
   let arrayIdOrderProduct = [];
-  dataJSONOrderProduct.details.map((item) => {
-    arrayIdOrderProduct.push(item.product);
-  });
+  if (dataJSONOrderProduct) {
+    dataJSONOrderProduct.details.map((item) => {
+      arrayIdOrderProduct.push(item.product);
+    });
+  }
 
   // Create Obj to send Server get info product
   const objOrderProduct = {
@@ -58,12 +61,14 @@ export default function OrderList() {
         </div>
         <a href="#" className="row">
           <div className="bill">
-            <div className="bill-head">
-              <span className="bill-id">#{dataJSONOrderProduct._id}</span>
-              <span className="bill-status c-orange">
-                {dataJSONOrderProduct.deliver.status}
-              </span>
-            </div>
+            {dataJSONOrderProduct && (
+              <div className="bill-head">
+                <span className="bill-id">#{dataJSONOrderProduct._id}</span>
+                <span className="bill-status c-orange">
+                  {dataJSONOrderProduct.deliver.status}
+                </span>
+              </div>
+            )}
             <div className="bill-body">
               {arrayAfterAddAmount &&
                 arrayAfterAddAmount.map((item) => (
@@ -92,25 +97,35 @@ export default function OrderList() {
                   </div>
                 ))}
             </div>
-            <div className="bill-footer row">
-              <div className="col-md-2 col-5">
-                <button className="btn btn-danger">Hủy đơn hàng</button>
+            {dataJSONOrderProduct && (
+              <div className="bill-footer row">
+                <div className="col-md-2 col-5">
+                  <button className="btn btn-danger">Hủy đơn hàng</button>
+                </div>
+                <div className="col-5 bill-update-status">
+                  <small className="c-light-text">
+                    Cập nhật lần cuối
+                    {new Date(
+                      dataJSONOrderProduct.createdAt
+                    ).toLocaleDateString()}
+                  </small>
+                </div>
+                <div className="col-md-5 col-7 bill-total">
+                  <span>
+                    <small className="c-light-text">Tổng tiền </small>
+                  </span>
+                  <span className="price-total c-red">
+                    {formatMoneyVND(dataJSONOrderProduct.payment.total)}
+                  </span>
+                </div>
               </div>
-              <div className="col-5 bill-update-status">
-                <small className="c-light-text">
-                  Cập nhật lần cuối {new Date(dataJSONOrderProduct.createdAt).toLocaleDateString()}
-                </small>
-              </div>
-              <div className="col-md-5 col-7 bill-total">
-                <span>
-                  <small className="c-light-text">Tổng tiền </small>
-                </span>
-                <span className="price-total c-red">
-                  {formatMoneyVND(dataJSONOrderProduct.payment.total)}
-                </span>
-              </div>
-            </div>
+            )}
           </div>
+          {!dataJSONOrderProduct && (
+            <div className="container">
+              <NoProduct content="Opps ! Bạn chưa có đơn hàng nào !"></NoProduct>
+            </div>
+          )}
         </a>
       </div>
     </div>
