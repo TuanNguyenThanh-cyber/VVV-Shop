@@ -10,9 +10,11 @@ export function orderProductAction(value) {
     dispatch({ type: ORDER_PRODUCT_REQUEST });
     try {
       const { data } = await orderProductAPI(value);
-    dispatch({ type: ORDER_PRODUCT_SUCCESS, payload: { data } });
+      dispatch({ type: ORDER_PRODUCT_SUCCESS, payload: { data } });
       alert("Đã đặt hàng thành công");
       localStorage.removeItem("orderCart");
+      localStorage.setItem("dataOrderProduct", JSON.stringify(data));
+      window.location.reload();
     } catch (error) {
       dispatch({
         type: ORDER_PRODUCT_FAILURE,
